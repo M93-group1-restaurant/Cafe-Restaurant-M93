@@ -1,3 +1,16 @@
 from django.db import models
 
-# Create your models here.
+class Order(models.Model):
+    pass
+
+
+class Reciept(models.Model):
+    pass
+
+
+class Table(models.Model):
+    pass
+
+
+class Table_order(models.Model):
+    pass
