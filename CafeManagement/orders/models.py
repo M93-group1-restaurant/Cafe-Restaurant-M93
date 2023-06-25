@@ -26,4 +26,7 @@ class Table(models.Model):
 
 
 class Table_order(models.Model):
-    pass
+    table_id= models.ForeignKey(Table , on_delete= models.CASCADE)
+    order_id= models.ForeignKey(Order , on_delete= models.CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
