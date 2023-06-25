@@ -7,7 +7,14 @@ class Category(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
 
 class Discount(models.Model):
-    pass
+    start_date=models.DateTimeField(auto_now=True)
+    end_date=models.DateTimeField(auto_now=True)
+    percent=models.IntegerField()
+    description=models.CharField(max_length=150)
+    number=models.IntegerField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+
 
 
 class Comment(models.Model):
