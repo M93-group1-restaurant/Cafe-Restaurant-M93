@@ -18,7 +18,11 @@ class Reciept(models.Model):
 
 
 class Table(models.Model):
-    pass
+    table_number= models.IntegerField()
+    space_position= models.CharField(max_length= 50)
+    reservation= models.CharField(max_length= 3)
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
 
 
 class Table_order(models.Model):
