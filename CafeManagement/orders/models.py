@@ -6,11 +6,15 @@ class Order(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     type_order= models.CharField(max_length=2)
-    user_id= models.ForeignKey(account , on_delete= models.CASCADE)
+    user_id= models.ForeignKey(Account , on_delete= models.CASCADE)
 
 
 class Reciept(models.Model):
-    pass
+    order_id= models.ForeignKey(Order, on_delete= models.CASCADE)
+    total_price= models.DecimalField()
+    final_price= models.DecimalField()
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
 
 
 class Table(models.Model):
