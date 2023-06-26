@@ -42,7 +42,7 @@ class MenuItem(models.Model):
 class Comment(models.Model):
     text=models.TextField(max_length=500)
     # user_id=models.ForeignKey(Account,on_delete=models.SET_NULL,null=True)
-    menuItem_id=models.ForeignKey()
+    menuItem_id=models.ForeignKey(MenuItem,on_delete=models.CASCADE)    
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
