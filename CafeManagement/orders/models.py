@@ -11,8 +11,8 @@ class Order(models.Model):
 
 class Reciept(models.Model):
     order_id= models.ForeignKey(Order, on_delete= models.CASCADE)
-    total_price= models.DecimalField()
-    final_price= models.DecimalField()
+    total_price= models.IntegerField()
+    final_price= models.IntegerField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
