@@ -12,7 +12,7 @@ class ModelInfo(models.Model):
 
 
 class Order(ModelInfo):
-    class DeliveryChoice(models.IntegerChoices):  # it can inherit intChoices
+    class DeliveryChoice(models.TextChoices):
         TAKE = "C", "COME TO TAKE"
         SEND = "S", "SEND"
         EAT = "E", "EAT"
