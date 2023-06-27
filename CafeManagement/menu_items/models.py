@@ -5,7 +5,7 @@ class ModelInfo(models.Model):
     name = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    slug = models.SlugField()
+    slug = models.SlugField(null=True,blank=True)
 
     class Meta:
         abstract = True
@@ -23,10 +23,10 @@ class Category(ModelInfo):
 
 class MenuItem(ModelInfo):
     price = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="menuItems")
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="menuItems",null=True,blank=True)
     period_time_service = models.DurationField()
     estimated_cooking_time = models.DurationField()
-    image = models.ImageField(upload_to="images/", default='no_image.jpg', null=True, blank=True)
+    image = models.ImageField(upload_to="images/", default='', null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
     class Meta:
