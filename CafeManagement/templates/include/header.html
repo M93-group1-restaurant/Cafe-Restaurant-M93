@@ -9,7 +9,7 @@
         {% include 'include/navbar.html' %}
       </div>
     </header>
-    {% if request.path == '/' %}
+    {% if request.url == home %}
       {% include 'include/slider.html' %}
     {% endif %}
 

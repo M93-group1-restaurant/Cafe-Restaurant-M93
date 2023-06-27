@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class MenuItemsConfig(AppConfig):
+class UserSessionConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'menu_items'
+    name = 'user_session'

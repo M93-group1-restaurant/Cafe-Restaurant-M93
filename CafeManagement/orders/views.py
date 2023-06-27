@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .forms import BookTableForm
 
-
 def book(request):
     if request.method=='POST':
         form=BookTableForm(request.POST)
