@@ -7,7 +7,7 @@ class Category(models.Model):
     name = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    parent_category = models.ForeignKey("Category", on_delete=models.CASCADE)
+    parent_category = models.ForeignKey("Category", on_delete=models.CASCADE, null=True, blank=True)
     def __str__(self):
         return self.name
 
@@ -22,7 +22,7 @@ class Discount(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.description, self.percent
+        return f'{self.percent}% offer'
 
 
 class MenuItem(models.Model):
@@ -35,6 +35,7 @@ class MenuItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="images/")
+    description = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return self.name

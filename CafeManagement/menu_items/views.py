@@ -1,5 +1,8 @@
 from django.shortcuts import render
-
+from .models import MenuItem, Category
 
 def menu(request):
-    return render(request, "menu.html")
+    menu=MenuItem.objects.all()
+    categories=Category.objects.all()
+
+    return render(request, "menu.html", context={"menu":menu,"categories":categories})
