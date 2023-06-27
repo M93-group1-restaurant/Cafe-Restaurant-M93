@@ -7,17 +7,15 @@ class ModelInfo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField()
 
-    class Mete:
+    class Meta:
         abstract = True
         ordering = ('-updated_at', '-created_at')
 
     def __str__(self):
         return self.name
 
-
 class Category(ModelInfo):
-    parent_category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="categories", null=True,
-                                        blank=True)
+    parent_category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="categories", null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
