@@ -10,25 +10,39 @@ class ModelInfo(models.Model):
 
     class Meta:
         abstract = True
-        ordering = ('-updated_at', '-created_at')
+        ordering = ("-updated_at", "-created_at")
 
     def __str__(self):
         return self.name
 
+
 class Category(ModelInfo):
-    parent_category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="categories", null=True, blank=True)
+    parent_category = models.ForeignKey(
+        "Category",
+        on_delete=models.CASCADE,
+        related_name="categories",
+        null=True,
+        blank=True,
+    )
 
     class Meta:
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = "Categories"
 
 
 class MenuItem(ModelInfo):
     price = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="menuItems",null=True,blank=True)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        related_name="menuItems",
+        null=True,
+        blank=True,
+    )
     period_time_service = models.DurationField(default=timedelta(seconds=300))
     estimated_cooking_time = models.DurationField(default=timedelta(seconds=300))
-    image = models.ImageField(upload_to="images/", default='', null=True, blank=True)
+    image = models.ImageField(upload_to="images/", default="", null=True, blank=True)
     is_active = models.BooleanField(default=True)
     description = models.CharField(max_length=300)
+
     class Meta:
-        verbose_name_plural = 'MenuItems'
+        verbose_name_plural = "MenuItems"
