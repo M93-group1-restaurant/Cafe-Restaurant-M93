@@ -8,4 +8,4 @@ def home(request):
     return render(request, 'index.html', context={"menu":menu,"categories":categories})
 
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about_page.html')
