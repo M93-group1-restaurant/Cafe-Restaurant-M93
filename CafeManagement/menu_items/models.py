@@ -1,11 +1,12 @@
 from django.db import models
+from datetime import timedelta
 
 
 class ModelInfo(models.Model):
     name = models.CharField(max_length=150)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(null=True,blank=True)
+    # slug = models.SlugField(null=True,blank=True)
 
     class Meta:
         abstract = True
@@ -24,10 +25,10 @@ class Category(ModelInfo):
 class MenuItem(ModelInfo):
     price = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="menuItems",null=True,blank=True)
-    period_time_service = models.DurationField()
-    estimated_cooking_time = models.DurationField()
+    period_time_service = models.DurationField(default=timedelta(seconds=300))
+    estimated_cooking_time = models.DurationField(default=timedelta(seconds=300))
     image = models.ImageField(upload_to="images/", default='', null=True, blank=True)
     is_active = models.BooleanField(default=True)
-
+    description = models.CharField(max_length=300)
     class Meta:
         verbose_name_plural = 'MenuItems'
