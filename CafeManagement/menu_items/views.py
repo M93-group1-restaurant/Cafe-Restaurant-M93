@@ -5,4 +5,4 @@ def menu(request):
     menu=MenuItem.objects.all()
     categories=Category.objects.all()
 
-    return render(request, "menu.html", context={"menu":menu,"categories":categories})
+    return render(request, "menu_page.html", context={"menu":menu,"categories":categories})
