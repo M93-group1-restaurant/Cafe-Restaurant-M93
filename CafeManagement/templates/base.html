@@ -15,8 +15,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
 
-  <title> Feane </title>
-  {% load static %} 
+  <title> Group "One" Cafe_Restuarant  </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -26,27 +25,23 @@
   <!-- nice select  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
   <!-- font awesome style -->
-  {% load static %} 
 
   <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet" />
 
   <!-- Custom styles for this template -->
-  {% load static %} 
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
-  {% load static %}
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
 
 </head>
 <body class="sub_page">
 
-  {% include 'header.html' %}
+  {% include 'include/header.html' %}
 {% block content %}
 
 
-
 {% endblock %}
-{% include 'footer.html' %}
+{% include 'include/footer.html' %}
 {% load static %}
  <!-- jQery -->
  <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>

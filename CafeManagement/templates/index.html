@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-  {% include 'offer.html' %}
-  {% include 'food.html' %}
-  {% include 'about.html' %}
-  {% include 'book.html' %}
-  {% include 'about.html' %}
-  {% include 'comment.html' %}
+<br>
+  {% include 'include/menu.html' %}
+  {% include 'include/about.html' %}
+{# {% include 'include/offer.html' %} #}
+  {# {% include 'include/comment.html' %} #} 
 {% endblock %}
