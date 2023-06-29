@@ -25,13 +25,21 @@ class Order(ModelInfo):
     class DeliveryChoice(models.TextChoices):
         TAKE = "C", "COME TO TAKE"
         SEND = "S", "SEND"
-        EAT = "E", "EAT"
+        EAT = "E", "COME TO EAT"
+    class ServeStatusChoice(models.TextChoices):
+        CANCEL = "C", "CANCEL"
+        COOKING = "K", "COOKING"
+        POSTPONE = "P", "POSTPONE"
+        SERVED = "S", "SERVED"
+
 
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
     )
     delivery_status = models.CharField(
         choices=DeliveryChoice.choices, max_length=20)
+    serving_status= models.CharField(
+        choices=ServeStatusChoice.choices, max_length=20)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
     end_reserve_date = models.DateTimeField(null=True, blank=True)
     userSession = models.ForeignKey(
