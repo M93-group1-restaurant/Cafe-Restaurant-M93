@@ -42,13 +42,14 @@ class Order(ModelInfo):
         choices=ServeStatusChoice.choices, max_length=20)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
     end_reserve_date = models.DateTimeField(null=True, blank=True)
-    userSession = models.ForeignKey(
-        UserSession,
-        on_delete=models.SET_NULL,
-        related_name="orders",
-        blank=True,
-        null=True,
-    )
+    phone_number=models.CharField(max_length=14)
+    # userSession = models.ForeignKey(
+    #     UserSession,
+    #     on_delete=models.SET_NULL,
+    #     related_name="orders",
+    #     blank=True,
+    #     null=True,
+    # )
 
     class Meta:
         verbose_name_plural = "Orders"
