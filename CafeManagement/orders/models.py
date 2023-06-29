@@ -17,6 +17,9 @@ class Order(ModelInfo):
         TAKE = "C", "COME TO TAKE"
         SEND = "S", "SEND"
         EAT = "E", "EAT"
+        # Postpond
+        # Waiting
+        # cancel
 
     table_ordered = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
