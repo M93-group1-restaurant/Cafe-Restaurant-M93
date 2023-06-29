@@ -21,6 +21,7 @@ class Order(ModelInfo):
         # Waiting
         # cancel
 
+
     table_ordered = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
     )
