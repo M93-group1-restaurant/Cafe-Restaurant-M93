@@ -1,6 +1,5 @@
 from django.db import models
 from menu_items.models import MenuItem
-from user_session.models import UserSession
 
 
 class ModelInfo(models.Model):
