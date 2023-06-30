@@ -19,26 +19,24 @@ class Table(ModelInfo):
 
     class Meta:
         verbose_name_plural = "Tables"
-
-
 class Order(ModelInfo):
-    class DeliveryChoice(models.TextChoices):
-        TAKE = "C", "COME TO TAKE"
-        SEND = "S", "SEND"
-        EAT = "E", "COME TO EAT"
-    class ServeStatusChoice(models.TextChoices):
-        CANCEL = "C", "CANCEL"
-        COOKING = "K", "COOKING"
-        POSTPONE = "P", "POSTPONE"
-        SERVED = "S", "SERVED"
+    class DeliveryChoice(models.IntegerChoices):
+        TAKE = 1, "Come to take 🚶‍♂️"
+        SEND = 2, "Send 🚚"
+        EAT = 3, "Eat 🍽️"
+    class ServeStatusChoice(models.IntegerChoices):
+        CANCEL = 1, "CANCEL ❌"
+        COOKING = 2, "COOKING 🍔"
+        POSTPONE = 3, "POSTPONE 🔁"
+        SERVED = 4, "SERVED 🤤"
 
 
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
     )
-    delivery_status = models.CharField(
+    delivery_status = models.IntegerField(
         choices=DeliveryChoice.choices, max_length=20)
-    serving_status= models.CharField(
+    serving_status= models.IntegerField(
         choices=ServeStatusChoice.choices, max_length=20)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
     end_reserve_date = models.DateTimeField(null=True, blank=True)
