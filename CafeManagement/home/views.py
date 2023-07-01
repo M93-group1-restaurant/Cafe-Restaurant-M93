@@ -40,3 +40,10 @@ def signup(request):
         form = SignUpForm()
         
     return render(request, 'registration/signup.html', {'form': form})
+
+@login_required
+@staff_member_required
+def users_admin(request):
+    customers = Customer.objects.filter()
+    print(customers)
+    return render(request, 'admin_temp/users.html', {'users':customers})
