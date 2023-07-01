@@ -1,14 +1,6 @@
 from django.db import models
 from menu_items.models import MenuItem
-
-
-class ModelInfo(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
-        ordering = ("-updated_at", "-created_at")
+from core.models import ModelInfo
 
 
 class Table(ModelInfo):

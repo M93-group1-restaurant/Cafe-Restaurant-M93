@@ -1,22 +1,10 @@
 from django.db import models
 from datetime import timedelta
-
-
-class ModelInfo(models.Model):
-    name = models.CharField(max_length=150)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    # slug = models.SlugField(null=True,blank=True)
-
-    class Meta:
-        abstract = True
-        ordering = ("-updated_at", "-created_at")
-
-    def __str__(self):
-        return self.name
+from core.models import ModelInfo
 
 
 class Category(ModelInfo):
+    name = models.CharField(max_length=150)
     parent_category = models.ForeignKey(
         "Category",
         on_delete=models.CASCADE,
@@ -28,8 +16,12 @@ class Category(ModelInfo):
     class Meta:
         verbose_name_plural = "Categories"
 
+    def __str__(self):
+        return self.name
+
 
 class MenuItem(ModelInfo):
+    title = models.CharField(max_length=150)
     price = models.IntegerField()
     category = models.ForeignKey(
         Category,
@@ -46,3 +38,6 @@ class MenuItem(ModelInfo):
 
     class Meta:
         verbose_name_plural = "MenuItems"
+
+    def __str__(self):
+        return self.title
