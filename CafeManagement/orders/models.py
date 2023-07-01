@@ -18,31 +18,28 @@ class Table(ModelInfo):
 
     class Meta:
         verbose_name_plural = "Tables"
-        
-        
+
+
 class Order(ModelInfo):
     class DeliveryChoice(models.IntegerChoices):
         TAKE = 1, "Come to take 🚶‍♂️"
         SEND = 2, "Send 🚚"
         EAT = 3, "Eat 🍽️"
-        
+
     class ServeStatusChoice(models.IntegerChoices):
         CANCEL = 1, "CANCEL ❌"
         COOKING = 2, "COOKING 🍔"
         POSTPONE = 3, "POSTPONE 🔁"
         SERVED = 4, "SERVED 🤤"
 
-
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
     )
-    delivery_status = models.IntegerField(
-        choices=DeliveryChoice.choices, max_length=20)
-    serving_status= models.IntegerField(
-        choices=ServeStatusChoice.choices, max_length=20)
+    delivery_status = models.IntegerField(choices=DeliveryChoice.choices)
+    serving_status = models.IntegerField(choices=ServeStatusChoice.choices)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
     end_reserve_date = models.DateTimeField(null=True, blank=True)
-    phone_number=models.CharField(max_length=14,null=True, blank=True)
+    phone_number = models.CharField(max_length=14, null=True, blank=True)
     # userSession = models.ForeignKey(
     #     UserSession,
     #     on_delete=models.SET_NULL,
@@ -66,8 +63,6 @@ class Receipt(ModelInfo):
         verbose_name_plural = "Receipts"
 
 
-
-
 class Order_menuItem(ModelInfo):
     menuItem = models.ForeignKey(
         MenuItem,
@@ -76,7 +71,5 @@ class Order_menuItem(ModelInfo):
         null=True,
         blank=True,
     )
-    order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="menuItems"
-    )
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="menuItems")
     quantity = models.PositiveIntegerField()

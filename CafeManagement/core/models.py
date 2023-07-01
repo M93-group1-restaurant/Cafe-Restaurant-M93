@@ -16,7 +16,7 @@ class AboutContent(ModelInfo):
 
 class RestaurantInfo(ModelInfo):
     title = models.CharField(max_length=50)
-    about = models.OneToOneField(AboutContent)
+    about = models.OneToOneField(AboutContent, on_delete=models.SET_NULL, null=True, blank=True)
     phone_number = models.CharField(max_length=50)
     address = models.TextField()
     email = models.EmailField()
@@ -32,7 +32,7 @@ class SliderContent(ModelInfo):
     button_text = models.CharField(max_length=20)
     button_link = models.CharField(max_length=50)
     RestaurantInfo = models.ForeignKey(
-        RestaurantInfo, on_delete=models.SET_NULL, related_name="sliders"
+        RestaurantInfo, on_delete=models.SET_NULL, related_name="sliders", null=True, blank=True
     )
 
     def __str__(self):
