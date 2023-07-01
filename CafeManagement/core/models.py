@@ -13,8 +13,8 @@ class SliderContent(ModelInfo):
 
 
 class AboutContent(ModelInfo):
-    title
-    content
+    title=models.CharField(max_length=50)
+    content=models.TextField()
 
 
 class RestaurantInfo(ModelInfo):
