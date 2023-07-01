@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "home",
     "menu_items",
+    "user_session",
     "orders",
+
+
 ]
 
 MIDDLEWARE = [
