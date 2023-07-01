@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+  Cart
+{% endblock %}
+
+{% block content %}
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Cart
+        </h2>
+      </div>
+      <div class="row ">
+        <div class="col-md-6 ">
+          <div class="form_container">
+            <form action="" method="post">
+              {% csrf_token %}
+
+              {{form.as_p}}
+              <br><br><br>
+              <input type="submit" value="Confirm Order" style="background-color: #ffbe33 ; padding: 10px 55px; -webkit-transition: all 0.3s;
+              transition: all 0.3s; display: inline-block; border: none; color: #ffffff; border-radius: 45px;">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
