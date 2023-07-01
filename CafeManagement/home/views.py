@@ -47,3 +47,32 @@ def users_admin(request):
     customers = Customer.objects.filter()
     print(customers)
     return render(request, 'admin_temp/users.html', {'users':customers})
+
+@login_required
+@staff_member_required
+def add_user(request):
+    if request.method == "POST":
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        address = request.POST['address']
+        contact = request.POST['contact']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_pass = request.POST['confirm_password']
+        username = email.split('@')[0]
+    
+        if (first_name == "") or (last_name == "") or (address == "") or (contact == "") or (email == "") or (password == "") or (confirm_pass == ""):
+                customers = Customer.objects.filter()
+                error_msg = "Please enter valid details"
+                return render(request, 'admin_temp/users.html', {'users': customers, 'error_msg': error_msg})
+
+        if password == confirm_pass:
+            user = User.objects.create(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
+            user.save()
+            cust = Customer.objects.create(customer=user, address=address, contact=contact)
+            cust.save()
+            success_msg = "New user successfully created"
+            customers = Customer.objects.filter()
+            return render(request, 'admin_temp/users.html', {'users': customers, 'success_msg': success_msg})
+
+    return redirect('hotel:users_admin')
