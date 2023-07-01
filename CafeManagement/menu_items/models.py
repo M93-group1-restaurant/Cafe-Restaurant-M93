@@ -3,7 +3,11 @@ from datetime import timedelta
 from core.models import ModelInfo
 
 class Customer(models.Model):
-    pass
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.TextField()
+    contact = models.CharField(max_length = 10)
+    orders = models.IntegerField(default=0)
+    total_sale = models.IntegerField(default=0)
 class Category(ModelInfo):
     name = models.CharField(max_length=150)
     parent_category = models.ForeignKey(
