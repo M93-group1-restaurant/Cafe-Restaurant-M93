@@ -2,7 +2,8 @@ from django.db import models
 from datetime import timedelta
 from core.models import ModelInfo
 
-
+class Customer(models.Model):
+    pass
 class Category(ModelInfo):
     name = models.CharField(max_length=150)
     parent_category = models.ForeignKey(
