@@ -9,3 +9,7 @@ class SignUpForm(forms.ModelForm):
     confirmpass = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Repeat Password', 'required':'true'}))
     address = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Address', 'required':'true'}))
     contact = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Contact', 'required':'true'}))
+
+    class meta:
+        model : User
+        fields = ['email','firstname','lastname','password','confirmpass']
