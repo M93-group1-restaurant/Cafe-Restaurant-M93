@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import BookTableForm
-from core.models import RestaurantInfo
+from home.models import RestaurantInfo
 
 
 def book(request):
