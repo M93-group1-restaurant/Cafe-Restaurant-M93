@@ -38,6 +38,10 @@ class SliderContent(ModelInfo):
     RestaurantInfo = models.ForeignKey(
         RestaurantInfo, on_delete=models.SET_NULL, related_name="sliders", null=True, blank=True
     )
+    number = models.PositiveIntegerField()
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ("number",)
