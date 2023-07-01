@@ -2,22 +2,25 @@
 <section class="slider_section ">
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
+        {% for slider in info.sliders.all %}
+          {% if slider.number == 1 %}
         <div class="carousel-item active">
+          {% else %}
+        <div class="carousel-item ">
+          {% endif %}
           <div class="container ">
             <div class="row">
               <div class="col-md-7 col-lg-6 ">
                 <div class="detail-box">
                   <h2>
-                    Welcome to Group One Restaurant
+                    {{slider.title}}                  
                   </h2>
                   <p>
-                  The freshness of our ingredients and attention to detail,mark our group to the Best Restaurant in the Middle East, when 
-                  the fresh ingredients and the art of baking in our oven are joined together, we create the most delicious flavors and make a
-                  nice Moments for you, Trust Us and Enjoy It.
+                    {{slider.content|safe}} 
                   </p>
                   <div class="btn-box">
-                    <a href="{% url 'menu' %}" class="btn1">
-                      Order Now
+                    <a href="{{slider.button_link}}" class="btn1">
+                      {{slider.button_text}} 
                     </a>
                   </div>
                 </div>
@@ -25,27 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item ">
-          <div class="container ">
-            <div class="row">
-              <div class="col-md-7 col-lg-6 ">
-                <div class="detail-box">
-                  <h2>
-                    Reserve table
-                  </h2>
-                  <p>
-                    You can reserve table in your special meetings, lovely dates, ... and have a nice time with us in our sweet place with our pleasant meals.
-                  <br><br></p><br>
-                  <div class="btn-box">
-                    <a href="{% url 'book' %}" class="btn1">
-                      Book Now
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
       <div class="container">
         <ol class="carousel-indicators">

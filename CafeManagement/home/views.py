@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from menu_items.models import MenuItem, Category
-from core.models import RestaurantInfo
+from .models import RestaurantInfo
 
 
 def home(request):
