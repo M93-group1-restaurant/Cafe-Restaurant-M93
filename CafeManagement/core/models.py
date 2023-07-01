@@ -6,10 +6,10 @@ class ModelInfo(models.Model):
 
 
 class SliderContent(ModelInfo):
-    title
-    content
-    button_text
-    button_link
+    title=models.CharField(max_length=50)
+    content=models.TextField()
+    button_text=models.CharField(max_length=20)
+    button_link=models.CharField(max_length=50)
 
 
 class AboutContent(ModelInfo):
