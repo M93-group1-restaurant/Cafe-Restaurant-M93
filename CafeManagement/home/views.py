@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from menu_items.models import MenuItem, Category
 from core.models import RestaurantInfo
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.admin.views.decorators import staff_member_required
 
 def home(request):
     menu = MenuItem.objects.all()
