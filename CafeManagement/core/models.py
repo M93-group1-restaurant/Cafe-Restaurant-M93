@@ -33,8 +33,8 @@ class RestaurantInfo(ModelInfo):
 class SliderContent(ModelInfo):
     title = models.CharField(max_length=50)
     content = models.TextField()
-    button_text = models.CharField(max_length=20)
-    button_link = models.CharField(max_length=50)
+    button_text = models.CharField(max_length=20, null=True, blank=True)
+    button_link = models.CharField(max_length=50, null=True, blank=True)
     RestaurantInfo = models.ForeignKey(
         RestaurantInfo, on_delete=models.SET_NULL, related_name="sliders", null=True, blank=True
     )
