@@ -11,12 +11,12 @@ class AboutContent(ModelInfo):
 
 
 class RestaurantInfo(ModelInfo):
-    title
-    about
-    phone_number
-    address
-    email
-    opening_hours
+    title = models.CharField(max_length=50)
+    about = models.OneToOneField(AboutContent)
+    phone_number = models.CharField(max_length=50)
+    address = models.TextField()
+    email = models.EmailField()
+    opening_hours = models.CharField(max_length=50)
 
 
 class SliderContent(ModelInfo):
@@ -25,5 +25,5 @@ class SliderContent(ModelInfo):
     button_text = models.CharField(max_length=20)
     button_link = models.CharField(max_length=50)
     RestaurantInfo = models.ForeignKey(
-        on_delete=models.SET_NULL, related_name="sliders"
+        RestaurantInfo, on_delete=models.SET_NULL, related_name="sliders"
     )
