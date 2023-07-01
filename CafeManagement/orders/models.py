@@ -18,11 +18,14 @@ class Table(ModelInfo):
 
     class Meta:
         verbose_name_plural = "Tables"
+        
+        
 class Order(ModelInfo):
     class DeliveryChoice(models.IntegerChoices):
         TAKE = 1, "Come to take 🚶‍♂️"
         SEND = 2, "Send 🚚"
         EAT = 3, "Eat 🍽️"
+        
     class ServeStatusChoice(models.IntegerChoices):
         CANCEL = 1, "CANCEL ❌"
         COOKING = 2, "COOKING 🍔"
@@ -39,7 +42,7 @@ class Order(ModelInfo):
         choices=ServeStatusChoice.choices, max_length=20)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
     end_reserve_date = models.DateTimeField(null=True, blank=True)
-    phone_number=models.CharField(max_length=14)
+    phone_number=models.CharField(max_length=14,null=True, blank=True)
     # userSession = models.ForeignKey(
     #     UserSession,
     #     on_delete=models.SET_NULL,
@@ -61,6 +64,8 @@ class Receipt(ModelInfo):
 
     class Meta:
         verbose_name_plural = "Receipts"
+
+
 
 
 class Order_menuItem(ModelInfo):
