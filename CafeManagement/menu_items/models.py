@@ -8,6 +8,11 @@ class Customer(models.Model):
     contact = models.CharField(max_length = 10)
     orders = models.IntegerField(default=0)
     total_sale = models.IntegerField(default=0)
+
+    STATUS = (
+        (pending,pending),
+        (verified,verified),
+    )
 class Category(ModelInfo):
     name = models.CharField(max_length=150)
     parent_category = models.ForeignKey(
