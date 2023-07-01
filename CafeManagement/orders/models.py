@@ -12,26 +12,17 @@ class ModelInfo(models.Model):
         ordering = ("-updated_at", "-created_at")
 
 
-class Table(ModelInfo):
-    number = models.IntegerField()
-    space_position = models.CharField(max_length=250)
-    capacity = models.PositiveIntegerField()
-
-    class Meta:
-        verbose_name_plural = "Tables"
-
-
 class Order(ModelInfo):
     class DeliveryChoice(models.TextChoices):
         TAKE = "C", "COME TO TAKE"
         SEND = "S", "SEND"
         EAT = "E", "COME TO EAT"
+        
     class ServeStatusChoice(models.TextChoices):
         CANCEL = "C", "CANCEL"
         COOKING = "K", "COOKING"
         POSTPONE = "P", "POSTPONE"
         SERVED = "S", "SERVED"
-
 
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
@@ -64,6 +55,15 @@ class Receipt(ModelInfo):
 
     class Meta:
         verbose_name_plural = "Receipts"
+
+
+class Table(ModelInfo):
+    number = models.IntegerField()
+    space_position = models.CharField(max_length=250)
+    capacity = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name_plural = "Tables"
 
 
 class Order_menuItem(ModelInfo):
