@@ -11,6 +11,9 @@ class Table(ModelInfo):
     class Meta:
         verbose_name_plural = "Tables"
 
+    def __str__(self):
+        return f'table {self.number}'
+
 
 class Order(ModelInfo):
     class DeliveryChoice(models.IntegerChoices):
@@ -43,6 +46,9 @@ class Order(ModelInfo):
     class Meta:
         verbose_name_plural = "Orders"
 
+    def __str__(self):
+        return f'order {self.id} {self.serving_status}'
+
 
 class Receipt(ModelInfo):
     order = models.OneToOneField(
@@ -53,6 +59,9 @@ class Receipt(ModelInfo):
 
     class Meta:
         verbose_name_plural = "Receipts"
+
+    def __str__(self):
+        return f'order {self.order} {self.final_price}'
 
 
 class Order_menuItem(ModelInfo):
