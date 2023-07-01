@@ -13,6 +13,13 @@ class Customer(models.Model):
         (pending,pending),
         (verified,verified),
     )
+
+    pending = 'Pending'
+    verified = 'Verified'
+
+    def __str__(self):
+        return self.customer.first_name + " " + self.customer.last_name
+        
 class Category(ModelInfo):
     name = models.CharField(max_length=150)
     parent_category = models.ForeignKey(
