@@ -13,3 +13,11 @@ class SignUpForm(forms.ModelForm):
     class meta:
         model : User
         fields = ['email','firstname','lastname','password','confirmpass']
+
+    def clean(self):
+        cleaned_data = super(SignUpForm, self).clean()
+        password = cleaned_data.get('password')
+        confirm_pass = cleaned_data.get('confirmpass')
+
+        if password != confirm_pass:
+            raise forms.ValidationError('Password and Confirm Password does not match!')
