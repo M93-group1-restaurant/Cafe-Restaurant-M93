@@ -11,19 +11,19 @@
               <a href="">
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <span>
-                  Location
+                  {{info.address}}
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <span>
-                  Call 0098 212532
+                  Call {{info.phone_number}}
                 </span>
               </a>
               <a href="">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <span>
-                  Group1@gmail.com
+                  {{info.email}}
                 </span>
               </a>
             </div>
@@ -32,7 +32,7 @@
         <div class="col-md-4 footer-col">
           <div class="footer_detail">
             <a href="" class="footer-logo">
-              Group "One"
+              {{info.title}}
             </a>
             <p>
 Join us in SocialMedia and make us better and the Best            </p>
@@ -63,16 +63,16 @@ Join us in SocialMedia and make us better and the Best            </p>
             Everyday
           </p>
           <p>
-            10.00 Am -10.00 Pm
+            {{info.opening_hours}}
           </p>
         </div>
       </div>
       <div class="footer-info">
         <p>
           &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Maktab-93 Group "One"</a><br><br>
+          <a href="https://html.design/">Maktab-93 {{info.title}}</a><br><br>
           &copy; <span id="displayYear"></span> Distributed By
-          <a href="https://themewagon.com/" target="_blank">Group "One" </a>
+          <a href="https://themewagon.com/" target="_blank">{{info.title}} </a>
         </p>
       </div>
     </div>
