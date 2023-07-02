@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "user_session",
     "menu_items",
     "orders",
-    'acconts'
+    "acounts",
 ]
 
 MIDDLEWARE = [
@@ -132,8 +132,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 
-# AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'acounts.CustomUser'
 
-# AUTHENTICATION_BACKENDS = [
-#     'accounts.backends.PhoneNumberBackend',
-# ]
+AUTHENTICATION_BACKENDS = [
+    'acounts.backends.PhoneNumberBackend',
+]
