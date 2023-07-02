@@ -1,18 +1,18 @@
 from django.shortcuts import render, redirect
 from .forms import CartForm, BookTableForm
 from home.models import RestaurantInfo
+import json
 
 
 def cart(request):
+    if request.method == "POST":
+        try:
+            order_items=json.loads(request.COOKIES["cart"])
+        except:
+            order_items={}
+        print(order_items)
+
     info = RestaurantInfo.objects.first()
-    # if request.method == "POST":
-    #     form = CartForm(request.POST)
-    #     if form.is_valid():
-    #         data = form.cleaned_data
-    #         print(data)
-    #     return redirect("home")
-    # else:
-    #     form = CartForm()
     return render(request, "cart.html", context={"info": info})
 
 
