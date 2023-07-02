@@ -1,20 +1,17 @@
-from django.contrib.auth.backends import BaseBackend
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
 from .models import CustomUser
 
-class PhoneNumberBackend(BaseBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
 
-        try:
-            user= CustomUser.objects.get(phone_number=username)
-            if user.check_password(password):
-                return user
-            return None
-        except CustomUser.DoesNotExist:
-            return None
+class CustomUserCreationForm(UserCreationForm):
 
-    def get_user(self, user_id):
-        try:
-            return CustomUser.objects.get(pk= user_id)
-        except CustomUser.DoesNotExist:
-            return None
-        
+    class Meta:
+        model = CustomUser
+        fields = ("phone_number",)
+
+
+class CustomUserChangeForm(UserChangeForm):
+
+    class Meta:
+        model = CustomUser
+        fields = ("phone_number",)
