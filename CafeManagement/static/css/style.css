@@ -662,6 +662,14 @@ a:focus {
   background-color: #e69c00;
 }
 
+.cart_section {
+  position: relative;
+}
+
+.cart_section .heading_container {
+  margin-bottom: 25px;
+}
+
 .book_section {
   position: relative;
 }
