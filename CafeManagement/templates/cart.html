@@ -4,25 +4,45 @@
 {% endblock %}
 
 {% block content %}
-  <section class="book_section layout_padding">
+  <section class="cart_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <h2>
-          Cart
-        </h2>
-      </div>
-      <div class="row ">
+      <div class="row justify-content-center">
         <div class="col-md-6 ">
-          <div class="form_container">
-            <form action="" method="post">
-              {% csrf_token %}
-
-              {{form.as_p}}
-              <br><br><br>
-              <input type="submit" value="Confirm Order" style="background-color: #ffbe33 ; padding: 10px 55px; -webkit-transition: all 0.3s;
-              transition: all 0.3s; display: inline-block; border: none; color: #ffffff; border-radius: 45px;">
-            </form>
-          </div>
+            <div class="heading_container p-3">
+              <h2>
+                Cart
+              </h2>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item gap-2">
+                <h5 class="card-title pt-3">item title</h5>
+                <div class="row p-3">
+                  <div class="p-3"><span class="card-text">item price</span></div>
+                  <div  class="p-3"><span class="card-text">item quantity</span></div>
+                  
+                  
+                </div>
+              </li>
+              <li class="list-group-item gap-2">
+                <h5 class="card-title pt-3">item title</h5>
+                <div class="row p-3">
+                  <div class="p-3"><span class="card-text">item price</span></div>
+                  <div  class="p-3"><span class="card-text">item quantity</span></div>
+                  
+                  
+                </div>
+              </li>
+              <li class="list-group-item gap-2 ">
+                <div class="p-3"><span class="card-text">Total price</span></div>
+              </li>
+              <li class="list-group-item gap-2 text-center ">
+                <div>
+                  <input  type="submit" value="Confirm Order" style="background-color: #ffbe33 ; padding: 10px 55px; -webkit-transition: all 0.3s;
+                  transition: all 0.3s; display: inline-block; border: none; color: #ffffff; border-radius: 45px;">
+                </div>
+              </li>
+            </ul>
+     
         </div>
       </div>
     </div>
