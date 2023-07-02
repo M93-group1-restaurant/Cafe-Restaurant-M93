@@ -9,18 +9,16 @@ import json
 def cart(request):
     if request.method == "POST":
         try:
-            order_items=json.loads(request.COOKIES["cart"])
-            order=Order.objects.create()
-            for (i,j) in order_items.items():
+            order_items = json.loads(request.COOKIES["cart"])
+            order = Order.objects.create()
+            for (i, j) in order_items.items():
                 menuItem = MenuItem.objects.get(id=i)
-                Order_menuItem.objects.create(menuItem=menuItem, order=order, quantity=j['quantity'])
+                Order_menuItem.objects.create(
+                    menuItem=menuItem, order=order, quantity=j["quantity"]
+                )
         except:
-            order_items={}
-        
-        
-        
-        
-        redirect('home')
+            order_items = {}
+        return redirect("home")
 
     info = RestaurantInfo.objects.first()
     return render(request, "cart.html", context={"info": info})

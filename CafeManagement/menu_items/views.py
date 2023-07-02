@@ -9,5 +9,7 @@ def menu(request):
     info = RestaurantInfo.objects.first()
 
     return render(
-        request, "menu_page.html", context={"menu": menu, "categories": categories, "info": info}
+        request,
+        "menu_page.html",
+        context={"menu": menu, "categories": categories, "info": info},
     )

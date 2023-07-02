@@ -12,7 +12,7 @@ class Table(ModelInfo):
         verbose_name_plural = "Tables"
 
     def __str__(self):
-        return f'table {self.number}'
+        return f"table {self.number}"
 
 
 class Order(ModelInfo):
@@ -26,7 +26,7 @@ class Order(ModelInfo):
         COOKING = 2, "COOKING 🍔"
         POSTPONE = 3, "POSTPONE 🔁"
         SERVED = 4, "SERVED 🤤"
-        PENDING=5, "PENDING ⌚"
+        PENDING = 5, "PENDING ⌚"
 
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
@@ -48,7 +48,7 @@ class Order(ModelInfo):
         verbose_name_plural = "Orders"
 
     def __str__(self):
-        return f'order id:{self.id} status:{self.serving_status}'
+        return f"order id:{self.id} status:{self.serving_status}"
 
 
 class Receipt(ModelInfo):
@@ -62,7 +62,7 @@ class Receipt(ModelInfo):
         verbose_name_plural = "Receipts"
 
     def __str__(self):
-        return f'order {self.order} {self.final_price}'
+        return f"order {self.order} {self.final_price}"
 
 
 class Order_menuItem(ModelInfo):
@@ -73,5 +73,7 @@ class Order_menuItem(ModelInfo):
         null=True,
         blank=True,
     )
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="menuItems", null=True, blank=True)
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name="menuItems", null=True, blank=True
+    )
     quantity = models.PositiveIntegerField()
