@@ -18,8 +18,7 @@
                 <h5 class="card-title pt-3">item title</h5>
                 <div class="row p-3">
                   <div class="p-3"><span class="card-text">item price</span></div>
-                  <div  class="p-3"><span class="card-text">item quantity</span></div>
-                  
+                  <div  class="p-3"><span class="card-text">item quantity</span></div>   
                   
                 </div>
               </li>
@@ -28,8 +27,7 @@
                 <div class="row p-3">
                   <div class="p-3"><span class="card-text">item price</span></div>
                   <div  class="p-3"><span class="card-text">item quantity</span></div>
-                  
-                  
+
                 </div>
               </li>
               <li class="list-group-item gap-2 ">
@@ -37,9 +35,12 @@
               </li>
               <li class="list-group-item gap-2 text-center ">
                 <div>
-                  <input  type="submit" value="Confirm Order" style="background-color: #ffbe33 ; padding: 10px 55px; -webkit-transition: all 0.3s;
-                  transition: all 0.3s; display: inline-block; border: none; color: #ffffff; border-radius: 45px;">
-                </div>
+                  <form action="" method="post">
+                    {% csrf_token %}
+                    <input  type="submit" value="Confirm Order" style="background-color: #ffbe33 ; padding: 10px 55px; -webkit-transition: all 0.3s;
+                    transition: all 0.3s; display: inline-block; border: none; color: #ffffff; border-radius: 45px;">
+                  </form>  
+              </div>
               </li>
             </ul>
      
