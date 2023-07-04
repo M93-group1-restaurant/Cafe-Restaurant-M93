@@ -8,6 +8,7 @@ class ModelInfo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # slug = models.SlugField(null=True,blank=True)
 
+
     class Meta:
         abstract = True
         ordering = ("-updated_at", "-created_at")

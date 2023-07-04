@@ -6,21 +6,25 @@ class TableAdmin(admin.ModelAdmin):
     fields = ('number', 'space_position', 'capacity')
     list_display = ('number', 'capacity', 'space_position')
     search_fields = ('number',)
+    list_filter = ('updated_at',)
 
 
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('table', 'serving_status',)
     search_fields = ('order', 'phone_number', 'serving_status')
+    list_filter = ('updated_at',)
 
 
 class ReceiptAdmin(admin.ModelAdmin):
     list_display = ('order', 'total_price', 'final_price')
     search_fields = ('order',)
+    list_filter = ('updated_at',)
 
 
 class Order_menuItemAdmin(admin.ModelAdmin):
     list_display = ('menuItem', 'quantity')
     search_fields = ('menuItem',)
+    list_filter = ('updated_at',)
 
 
 admin.site.register(Table, TableAdmin)

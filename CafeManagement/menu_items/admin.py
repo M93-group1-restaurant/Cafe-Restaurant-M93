@@ -6,12 +6,16 @@ from django.utils.html import format_html
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ("name",)
+    list_filter = ('updated_at',)
+
 
 
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('image_preview', 'price', 'category', 'less_description',)
     list_display_links = ('less_description',)
     search_fields = ("name",)
+    list_filter = ('updated_at',)
+
 
     @admin.display(description=None)
     def less_description(self, obj):

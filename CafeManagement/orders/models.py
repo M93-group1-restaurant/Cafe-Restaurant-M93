@@ -29,7 +29,7 @@ class Order(ModelInfo):
     class ServeStatusChoice(models.IntegerChoices):
         CANCEL = 1, "CANCEL ❌"
         COOKING = 2, "COOKING 🍔"
-        POSTPONE = 3, "POSTPONE 🔁"
+        POSTPONE = 3, "PENDING 🔁"
         SERVED = 4, "SERVED 🤤"
         CONFIRM = 5, "CONFIRM ✔"
 
