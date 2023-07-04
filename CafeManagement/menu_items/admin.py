@@ -7,6 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ("name",)
     list_filter = ('updated_at',)
+    list_per_page = 10
 
 
 class MenuItemAdmin(admin.ModelAdmin):
@@ -14,6 +15,7 @@ class MenuItemAdmin(admin.ModelAdmin):
     list_display_links = ('less_description',)
     search_fields = ("name",)
     list_filter = ('updated_at',)
+    list_per_page = 8
 
     @admin.display(description=None)
     def less_description(self, obj):
