@@ -4,6 +4,8 @@ from . import views
 
 # Django admin customization
 admin.site.header = "Caffe Restaurant"
+admin.site.site_title = "Welcome to Caffe Restaurant"
+
 urlpatterns = [
     path("", views.home, name="home"),
     path("about/", views.about, name="about"),
