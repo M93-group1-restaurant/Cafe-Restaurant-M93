@@ -7,7 +7,15 @@ class TableAdmin(admin.ModelAdmin):
     list_display = ('number', 'capacity', 'space_position')
 
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('table', 'serving_status',)
+
+
+class ReceiptAdmin(admin.ModelAdmin):
+    list_display = ('order', 'total_price', 'final_price')
+
+
 admin.site.register(Table, TableAdmin)
-admin.site.register(Order)
-admin.site.register(Receipt)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(Receipt, ReceiptAdmin)
 admin.site.register(Order_menuItem)
