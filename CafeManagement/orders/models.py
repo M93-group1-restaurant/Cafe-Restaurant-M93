@@ -31,6 +31,7 @@ class Order(ModelInfo):
         COOKING = 2, "COOKING 🍔"
         POSTPONE = 3, "POSTPONE 🔁"
         SERVED = 4, "SERVED 🤤"
+        CONFIRM = 5, "CONFIRM ✔"
 
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True

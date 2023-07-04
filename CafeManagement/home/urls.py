@@ -5,7 +5,7 @@ from . import views
 # Django admin customization
 admin.site.site_header = "Login to Caffe Restaurant"
 admin.site.site_title = "Welcome to Caffe Restaurant"
-admin.site.index_title = "Welcome to this Caffe Restaurant Portal"
+admin.site.index_title = "Welcome to Group one Caffe Restaurant Portal"
 
 urlpatterns = [
     path("", views.home, name="home"),
