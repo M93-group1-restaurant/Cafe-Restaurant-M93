@@ -27,11 +27,11 @@ class Order(ModelInfo):
         EAT = 3, "Eat 🍽️"
 
     class ServeStatusChoice(models.IntegerChoices):
-        CANCEL = 1, "CANCEL ❌"
-        COOKING = 2, "COOKING 🍔"
-        POSTPONE = 3, "PENDING 🔁"
+        CANCEL = 1, "PENDING 🔁"
+        COOKING = 2, "CONFIRM ✔"
+        POSTPONE = 3, "COOKING 🍔"
         SERVED = 4, "SERVED 🤤"
-        CONFIRM = 5, "CONFIRM ✔"
+        CONFIRM = 5, "CANCEL ❌"
 
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
