@@ -16,11 +16,10 @@ def cart(request):
         for menu_item in menuItems:
             total_price+=menu_item[0].price*menu_item[1]
     except:
-        order_items = {}
         menuItems=()
         total_price=0
 
-    if request.method == "POST":
+    if request.method == "POST" and menuItems:
         form=CartForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
