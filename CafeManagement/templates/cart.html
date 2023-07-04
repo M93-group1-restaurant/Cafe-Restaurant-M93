@@ -68,6 +68,7 @@
               <li class="list-group-item text-center ">
                 <div>
                   <form action="" method="post">
+                    {{form.as_p}}
                     {% csrf_token %}
                     <input  type="submit" value="Confirm Order" style="background-color: #ffbe33 ; padding: 10px 55px; -webkit-transition: all 0.3s;
                     transition: all 0.3s; display: inline-block; border: none; color: #ffffff; border-radius: 45px;">
