@@ -1,7 +1,7 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from datetime import date
-from dateutil.relativedelta import relativedelta  # pip install python-dateutil
+from dateutil.relativedelta import relativedelta # pip install python-dateutil
 
 
 class UserSession(models.Model):

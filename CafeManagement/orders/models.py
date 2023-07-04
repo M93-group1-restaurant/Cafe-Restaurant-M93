@@ -1,14 +1,6 @@
 from django.db import models
 from menu_items.models import MenuItem
-
-
-class ModelInfo(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        abstract = True
-        ordering = ("-updated_at", "-created_at")
+from core.models import ModelInfo
 
 
 class Table(ModelInfo):
@@ -19,6 +11,8 @@ class Table(ModelInfo):
     class Meta:
         verbose_name_plural = "Tables"
 
+    def __str__(self):
+        return f"table {self.number}"
 
 class Order(ModelInfo):
     class DeliveryChoice(models.IntegerChoices):
@@ -31,19 +25,17 @@ class Order(ModelInfo):
         COOKING = 2, "COOKING 🍔"
         POSTPONE = 3, "POSTPONE 🔁"
         SERVED = 4, "SERVED 🤤"
-        CONFIRM = 5, "CONFIRM ✔"
+        PENDING = 5, "PENDING ⌚"
 
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
     )
-    delivery_status = models.IntegerField(
-        choices=DeliveryChoice.choices)
-    serving_status = models.IntegerField(
-        choices=ServeStatusChoice.choices)
+
+    delivery_status = models.IntegerField(choices=DeliveryChoice.choices, default=3)
+    serving_status = models.IntegerField(choices=ServeStatusChoice.choices, default=5)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
     end_reserve_date = models.DateTimeField(null=True, blank=True)
     phone_number = models.CharField(max_length=14, null=True, blank=True)
-
     # userSession = models.ForeignKey(
     #     UserSession,
     #     on_delete=models.SET_NULL,
@@ -54,6 +46,9 @@ class Order(ModelInfo):
 
     class Meta:
         verbose_name_plural = "Orders"
+
+    def __str__(self):
+        return f"order id:{self.id} status:{self.serving_status}"
 
 
 class Receipt(ModelInfo):
@@ -66,6 +61,9 @@ class Receipt(ModelInfo):
     class Meta:
         verbose_name_plural = "Receipts"
 
+    def __str__(self):
+        return f"order {self.order} {self.final_price}"
+
 
 class Order_menuItem(ModelInfo):
     menuItem = models.ForeignKey(
@@ -76,6 +74,9 @@ class Order_menuItem(ModelInfo):
         blank=True,
     )
     order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="menuItems"
+        Order, on_delete=models.CASCADE, related_name="menuItems", null=True, blank=True
     )
     quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return(f"{self.order}, {self.menuItem}")
