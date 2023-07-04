@@ -14,7 +14,6 @@ class Table(ModelInfo):
     def __str__(self):
         return f"table {self.number}"
 
-
 class Order(ModelInfo):
     class DeliveryChoice(models.IntegerChoices):
         TAKE = 1, "Come to take 🚶‍♂️"
@@ -31,6 +30,7 @@ class Order(ModelInfo):
     table = models.ForeignKey(
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
     )
+
     delivery_status = models.IntegerField(choices=DeliveryChoice.choices, default=3)
     serving_status = models.IntegerField(choices=ServeStatusChoice.choices, default=5)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
