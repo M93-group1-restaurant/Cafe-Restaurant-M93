@@ -8,14 +8,17 @@ class TableAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
+    exclude = ()
     list_display = ('table', 'serving_status',)
 
 
 class ReceiptAdmin(admin.ModelAdmin):
+    exclude = ()
     list_display = ('order', 'total_price', 'final_price')
 
 
 class Order_menuItemAdmin(admin.ModelAdmin):
+    exclude = ()
     list_display = ('menuItem', 'quantity')
 
 
