@@ -13,7 +13,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('table', 'serving_status',)
     search_fields = ('order', 'phone_number', 'serving_status')
     list_filter = ('updated_at',)
-    radio_fields = {'serving_status': admin.VERTICAL}
+    radio_fields = {'serving_status': admin.HORIZONTAL}
 
 
 class ReceiptAdmin(admin.ModelAdmin):
