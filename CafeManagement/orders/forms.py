@@ -1,6 +1,10 @@
 from django import forms
 
 
+class CartForm(forms.Form):
+    ...
+
+
 class BookTableForm(forms.Form):
     choices = [
         ("", "How many person?"),

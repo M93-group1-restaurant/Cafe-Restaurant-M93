@@ -9,7 +9,9 @@ def home(request):
     info = RestaurantInfo.objects.first()
     print(info.opening_hours)
     return render(
-        request, "index.html", context={"menu": menu, "categories": categories, "info": info}
+        request,
+        "index.html",
+        context={"menu": menu, "categories": categories, "info": info},
     )
 
 
