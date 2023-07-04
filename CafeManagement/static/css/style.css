@@ -562,7 +562,7 @@ a:focus {
           justify-content: space-between;
 }
 
-.food_section .box .options a {
+.food_section .box .options a.show {
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -668,6 +668,28 @@ a:focus {
 
 .cart_section .heading_container {
   margin-bottom: 25px;
+}
+
+.cart_section a.show {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background: #ffbe33;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+} 
+
+.cart_section a svg {
+  width: 18px;
+  height: auto;
+  fill: #ffffff;
 }
 
 .book_section {
@@ -1013,3 +1035,10 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+.hide { display: none; }
+.show { display: block; }
+
+
+
+
