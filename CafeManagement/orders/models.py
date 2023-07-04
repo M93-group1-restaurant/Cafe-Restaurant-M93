@@ -77,3 +77,6 @@ class Order_menuItem(ModelInfo):
         Order, on_delete=models.CASCADE, related_name="menuItems", null=True, blank=True
     )
     quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return(f"{self.order}, {self.menuItem}")
