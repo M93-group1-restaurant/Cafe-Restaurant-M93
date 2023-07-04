@@ -7,10 +7,6 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
-# def show_image(obj):
-#     return format_html(f'<img src="obj.image" alt="sss" width="500" height="600">')
-
-
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('image_preview', 'price', 'category', 'less_description',)
     list_display_links = ('less_description',)
