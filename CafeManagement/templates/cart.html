@@ -14,26 +14,55 @@
               </h2>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item gap-2">
-                <h5 class="card-title pt-3">item title</h5>
+              {% for menuItem in menuItems %}
+              <li class="list-group-item gap-2" id="cartItem{{menuItem.0.id}}">
+                <div class="row">
+                  <h5 class="card-title pt-3">{{menuItem.0.title}}</h5>
+
+                  <div >
+                    <img src="{{menuItem.0.image.url}}" style="max-width: 70px; max-height: 70px; position: absolute; right: 10%; top: 20%">
+                  </div>
+                </div>
+                
                 <div class="row p-3">
-                  <div class="p-3"><span class="card-text">item price</span></div>
-                  <div  class="p-3"><span class="card-text">item quantity</span></div>   
+                  <div class="p-1 pr-5">
+                    <span class="card-text">{{menuItem.0.price}} T</span>
+                  </div>
+                  <div>
+                    <a href= "javascript:null" onclick="addToCart('{{menuItem.0.id}}','{{menuItem.0.price}}')" class="show" >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="show">
+                        <rect x="11" y="4" width="2" height="16" fill="#fff"/>
+                        <rect x="4" y="11" width="16" height="2" fill="#fff"/>
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                      </svg>
+                    </a>
+                  </div>
+                  <div  class="p-1">
+                    <span class="card-text" id="cart_quantity{{menuItem.0.id}}">{{menuItem.1}}</span>
+                  </div>   
+                  <div>
+                    <a href= "javascript:null" onclick="decreaseFromCart('{{menuItem.0.id}}', '{{menuItem.0.price}}')"  class="show" >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448"  class="show">
+                        <path d="M32 224c0-8.832 7.168-16 16-16h352c8.832 0 16 7.168 16 16s-7.168 16-16 16H48c-8.832 0-16-7.168-16-16z"/>
+                      </svg>
+                    </a>
+                  </div>
+                  <div class="pl-2">
+                    <a href= "javascript:null" onclick="removeFromCart('{{menuItem.0.id}}', '{{menuItem.0.price}}')"  class="show" >
+                      <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16"> 
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="white"></path> 
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="white"></path> 
+                      </svg>
+                    </a>
+                  </div>
                   
                 </div>
               </li>
-              <li class="list-group-item gap-2">
-                <h5 class="card-title pt-3">item title</h5>
-                <div class="row p-3">
-                  <div class="p-3"><span class="card-text">item price</span></div>
-                  <div  class="p-3"><span class="card-text">item quantity</span></div>
-
-                </div>
+              {% endfor %}
+              <li class="list-group-item">
+                <div class="row p-3"><div class="pr-3"><span class="card-text">Total price</span></div><div><span class="card-text" id="total_price">{{total_price}}</span><span> T</span></div></div>
               </li>
-              <li class="list-group-item gap-2 ">
-                <div class="p-3"><span class="card-text">Total price</span></div>
-              </li>
-              <li class="list-group-item gap-2 text-center ">
+              <li class="list-group-item text-center ">
                 <div>
                   <form action="" method="post">
                     {% csrf_token %}
@@ -48,4 +77,6 @@
       </div>
     </div>
   </section>
+
+  
   {% endblock %}
