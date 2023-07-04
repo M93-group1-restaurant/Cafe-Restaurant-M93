@@ -5,11 +5,13 @@ from django.utils.html import format_html
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
+    search_fields = ("name",)
 
 
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = ('image_preview', 'price', 'category', 'less_description',)
     list_display_links = ('less_description',)
+    search_fields = ("name",)
 
     @admin.display(description=None)
     def less_description(self, obj):
