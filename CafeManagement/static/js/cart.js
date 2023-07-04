@@ -6,18 +6,18 @@ function setToMenuCart(menuItemId){
   document.getElementById("item"+menuItemId).classList.toggle('hide');
 
   document.getElementById("plus"+ menuItemId).classList.toggle('show');
-  document.getElementById("plus_item"+menuItemId).classList.toggle('show');
+  document.getElementById("plus_item"+menuItemId).classList.toggle('show_a');
   document.getElementById("plus"+ menuItemId).classList.remove('hide');
 
   document.getElementById("cart_quantity"+ menuItemId).innerHTML=1;
 
   document.getElementById("minus"+ menuItemId).classList.toggle('show');
-  document.getElementById("minus_item"+menuItemId).classList.toggle('show');
+  document.getElementById("minus_item"+menuItemId).classList.toggle('show_a');
   document.getElementById("minus"+ menuItemId).classList.remove('hide');
 
   document.getElementById("trash"+ menuItemId).classList.toggle('show');
   document.getElementById("trash"+ menuItemId).classList.remove('hide');
-  document.getElementById("trash_bin"+menuItemId).classList.toggle('show');
+  document.getElementById("trash_bin"+menuItemId).classList.toggle('show_a');
 }
 
 
@@ -32,7 +32,7 @@ function removeFromMenuCart(menuItemId){
 
   document.getElementById("plus"+ menuItemId).classList.toggle('hide'); 
   document.getElementById("plus_item"+menuItemId).classList.toggle('hide');
-  document.getElementById("plus_item"+menuItemId).classList.remove('show');
+  document.getElementById("plus_item"+menuItemId).classList.remove('show_a');
   document.getElementById("plus"+ menuItemId).classList.remove('show');
 
   document.getElementById("cart_quantity"+ menuItemId).innerHTML="";
@@ -40,13 +40,13 @@ function removeFromMenuCart(menuItemId){
 
   document.getElementById("minus"+ menuItemId).classList.toggle('hide');
   document.getElementById("minus_item"+menuItemId).classList.toggle('hide');
-  document.getElementById("minus_item"+menuItemId).classList.remove('show');
+  document.getElementById("minus_item"+menuItemId).classList.remove('show_a');
   document.getElementById("minus"+ menuItemId).classList.remove('show');
 
   document.getElementById("trash"+ menuItemId).classList.toggle('hide');
   document.getElementById("trash"+ menuItemId).classList.remove('show');
   document.getElementById("trash_bin"+menuItemId).classList.toggle('hide');
-  document.getElementById("trash_bin"+menuItemId).classList.remove('show');
+  document.getElementById("trash_bin"+menuItemId).classList.remove('show_a');
 }
 
 function decreaseFromMenuCart(menuItemId){

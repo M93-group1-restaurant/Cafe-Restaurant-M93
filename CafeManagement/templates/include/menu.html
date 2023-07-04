@@ -40,7 +40,7 @@
                   <div class="row">
                     <!-- plus_item -->
                     <div class="p-1">
-                        <a href="javascript:null" onclick="addItemToCookie('{{menu_item.id}}')" id="plus_item{{menu_item.id}}" data-action="add" >
+                        <a href="javascript:null" onclick="addItemToCookie('{{menu_item.id}}')" id="plus_item{{menu_item.id}}"  class="change">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus{{menu_item.id}}" class="hide">
                               <rect x="11" y="4" width="2" height="16" fill="#fff"/>
                               <rect x="4" y="11" width="16" height="2" fill="#fff"/>
@@ -51,7 +51,7 @@
                     <div class="p-2"><span id="cart_quantity{{menu_item.id}}"></span></div>
                 <!-- minus_item -->
                   <div class="p-1">
-                  <a href= "javascript:null" onclick="decreaseFromMenuCart('{{menu_item.id}}')" id="minus_item{{menu_item.id}}" data-action="minus" >
+                  <a href= "javascript:null" onclick="decreaseFromMenuCart('{{menu_item.id}}')" id="minus_item{{menu_item.id}}" class="change" >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448" id="minus{{menu_item.id}}" class="hide">
                       <path d="M32 224c0-8.832 7.168-16 16-16h352c8.832 0 16 7.168 16 16s-7.168 16-16 16H48c-8.832 0-16-7.168-16-16z"/>
                     </svg>
@@ -59,7 +59,7 @@
                 </div>
                 <!-- trash_bin -->
                   <div class="p-1">
-                  <a href= "javascript:null" onclick="removeFromMenuCart('{{menu_item.id}}')" id="trash_bin{{menu_item.id}}" data-action="remove" >
+                  <a href= "javascript:null" onclick="removeFromMenuCart('{{menu_item.id}}')" id="trash_bin{{menu_item.id}}" class="change">
         
                     <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="hide bi bi-trash" viewBox="0 0 16 16" id="trash{{menu_item.id}}"> 
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="white"></path> 
