@@ -14,8 +14,6 @@ class CartView(View):
 
     def get(self,request):
         (menuItems,total_price)=CartView.load_cookie(request)
-        print(menuItems)
-        print(total_price)
         form=CartForm()
         return render(request, "cart.html", context={"info": CartView.info, "form":form, "menuItems": menuItems, "total_price":total_price})
 
@@ -35,6 +33,11 @@ class CartView(View):
                 )
             response = HttpResponseRedirect(reverse("home"))
             response.delete_cookie("cart")
+            request.session['last_order']=order.id
+            if not request.session.get('orders_history'):
+                request.session['orders_history']=[order.id]
+            else:
+                request.session['orders_history'].append(order.id)
             return response
         return render(request, "cart.html", context={"info": CartView.info, "form":form, "menuItems": menuItems, "total_price":total_price})
 
