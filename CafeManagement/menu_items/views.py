@@ -5,8 +5,7 @@ from django.views import View
 
 
 class MenuView(View):
-    
-    def get(self,request):
+    def get(self, request):
         menu = MenuItem.objects.all()
         categories = Category.objects.all()
         info = RestaurantInfo.objects.first()
@@ -15,4 +14,3 @@ class MenuView(View):
             "menu_page.html",
             context={"menu": menu, "categories": categories, "info": info},
         )
-    

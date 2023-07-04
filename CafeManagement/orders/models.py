@@ -14,6 +14,7 @@ class Table(ModelInfo):
     def __str__(self):
         return f"table {self.number}"
 
+
 class Order(ModelInfo):
     class DeliveryChoice(models.IntegerChoices):
         TAKE = 1, "Come to take 🚶‍♂️"
@@ -79,4 +80,4 @@ class Order_menuItem(ModelInfo):
     quantity = models.PositiveIntegerField()
 
     def __str__(self):
-        return(f"{self.order}, {self.menuItem}")
+        return f"{self.order}, {self.menuItem}"

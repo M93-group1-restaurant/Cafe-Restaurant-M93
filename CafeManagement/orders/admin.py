@@ -3,20 +3,23 @@ from .models import Order, Receipt, Table, Order_menuItem
 
 
 class TableAdmin(admin.ModelAdmin):
-    fields = ('number', 'space_position', 'capacity')
-    list_display = ('number', 'capacity', 'space_position')
+    fields = ("number", "space_position", "capacity")
+    list_display = ("number", "capacity", "space_position")
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('table', 'serving_status',)
+    list_display = (
+        "table",
+        "serving_status",
+    )
 
 
 class ReceiptAdmin(admin.ModelAdmin):
-    list_display = ('order', 'total_price', 'final_price')
+    list_display = ("order", "total_price", "final_price")
 
 
 class Order_menuItemAdmin(admin.ModelAdmin):
-    list_display = ('menuItem', 'quantity')
+    list_display = ("menuItem", "quantity")
 
 
 admin.site.register(Table, TableAdmin)

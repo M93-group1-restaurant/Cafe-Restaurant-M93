@@ -2,13 +2,13 @@ from django import forms
 
 
 class CartForm(forms.Form):
-    phone_number=forms.CharField(
+    phone_number = forms.CharField(
         widget=forms.TextInput(
             attrs={"placeholder": "Your phone number", "class": "form-control"}
         ),
         label="",
     )
-    table_number=forms.IntegerField(
+    table_number = forms.IntegerField(
         widget=forms.TextInput(
             attrs={"placeholder": "Table number", "class": "form-control"}
         ),

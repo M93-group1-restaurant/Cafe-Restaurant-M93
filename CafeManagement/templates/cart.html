@@ -13,9 +13,16 @@
                 Cart
               </h2>
             </div>
-            {% if not menuItems %}
-            <div class="text-center"> <h5 class="card-text">Your cart is empty</h5><br><br></div>
-            {% endif %}
+            
+            <div class="text-center"> 
+              <h5 class="card-text" id="emptyCart">
+                {% if not menuItems %}
+                Your cart is empty
+                {% endif %}
+              </h5>
+              <br><br>
+            </div>
+            
             <ul class="list-group list-group-flush">
               {% for menuItem in menuItems %}
               <li class="list-group-item gap-2" id="cartItem{{menuItem.0.id}}">

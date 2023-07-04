@@ -15,7 +15,7 @@ class HomeView(View):
             context={"menu": menu, "categories": categories, "info": info},
         )
 
-    
+
 class AboutView(View):
     def get(self, request):
         info = RestaurantInfo.objects.first()
