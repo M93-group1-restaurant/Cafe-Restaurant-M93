@@ -15,7 +15,11 @@ class ReceiptAdmin(admin.ModelAdmin):
     list_display = ('order', 'total_price', 'final_price')
 
 
+class Order_menuItemAdmin(admin.ModelAdmin):
+    list_display = ('menuItem', 'quantity')
+
+
 admin.site.register(Table, TableAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Receipt, ReceiptAdmin)
-admin.site.register(Order_menuItem)
+admin.site.register(Order_menuItem, Order_menuItemAdmin)
