@@ -84,7 +84,7 @@ function addToCart(menuItemId,price){
   addItemToCookie(menuItemId)
   let initial_total_price= document.getElementById('total_price').innerHTML
   console.log(initial_total_price+price)
-  document.getElementById('total_price').innerHTML=(initial_total_price+price)
+  document.getElementById('total_price').innerHTML=(+initial_total_price + +price)
 }
 
   function setItemInCookie(menuItemId) {
