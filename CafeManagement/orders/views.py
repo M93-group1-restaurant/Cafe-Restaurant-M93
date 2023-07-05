@@ -56,7 +56,7 @@ class CartView(View):
         return (menuItems,total_price)
 
 
- class CustomerView(View):
+class CustomerView(View):
     info = RestaurantInfo.objects.first()
 
     def get(self,request):

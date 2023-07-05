@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+  Customer
+{% endblock %}
+
+{% block content %}
+  <section class="cart_section layout_padding">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 ">
+            <div class="heading_container p-3">
+              <h2>
+                Orders history
+              </h2>
+            </div>
+            
+            <div class="text-center"> 
+              <h5 class="card-text" id="emptyCart">
+                {% if not orders %}
+                You haven't order yet ...
+                {% endif %}
+              </h5>
+              <br><br>
+            </div>
+            
+            <ul class="list-group list-group-flush">
+              {% for order in orders %}
+             
+              {% endfor %}
+            </ul>
+     
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  {% endblock %}
