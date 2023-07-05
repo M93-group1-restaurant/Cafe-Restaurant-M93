@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cashier Login</title>
+</head>
+<body>
+    <h1>Cashier Login</h1>
+
+    <form method="post" action="{% url 'acounts:cashier_login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>

@@ -3,7 +3,7 @@ from .models import CustomUser
 
 class PhoneNumberBackend(BaseBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
-
+        print("hello")
         try:
             user= CustomUser.objects.get(phone_number=username)
             if user.check_password(password):

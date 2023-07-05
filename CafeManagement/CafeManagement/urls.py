@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from acounts.views import CashierLoginPageView, CashierPageView
 
 
 urlpatterns = [
@@ -26,7 +27,8 @@ urlpatterns = [
     path("", include("home.urls")),
     path("", include("menu_items.urls")),
     path("", include("orders.urls")),
-]
+    path('', include("acounts.urls")),
+   ]
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

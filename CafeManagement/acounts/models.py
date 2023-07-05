@@ -30,6 +30,10 @@ class CustomGroup(Group):
     permissions = (
         ('can_view_custom_user', 'Can view custom user'),
         ('can_edit_custom_user', 'Can edit custom user'),
+        ('can_view_orders', 'Can view orders'),
+        ('can_edit_orders', 'Can edit orders'),
+        ('can_view_prices', 'Can view prices'),
+        ('can_edit_prices', 'Can edit prices'),
     )
 
     class Meta:

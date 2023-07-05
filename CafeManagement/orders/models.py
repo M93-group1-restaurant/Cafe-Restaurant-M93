@@ -1,4 +1,5 @@
 from django.db import models
+from acounts.models import CustomUser
 from menu_items.models import MenuItem
 from user_session.models import UserSession
 

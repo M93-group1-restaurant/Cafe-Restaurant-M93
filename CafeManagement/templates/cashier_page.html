@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Cashier Panel</h1>
+  <ul>
+    {% if can_view_custom_user %}
+      <li><a href="#">View Custom User</a></li>
+    {% endif %}
+    {% if can_edit_custom_user %}
+      <li><a href="#">Edit Custom User</a></li>
+    {% endif %}
+    {% if can_view_orders %}
+      <li><a href="#">View Orders</a></li>
+    {% endif %}
+    {% if can_edit_orders %}
+      <li><a href="#">Edit Orders</a></li>
+    {% endif %}
+    {% if can_view_prices %}
+      <li><a href="#">View Prices</a></li>
+    {% endif %}
+    {% if can_edit_prices %}
+      <li><a href="#">Edit Prices</a></li>
+    {% endif %}
+  </ul>
+{% endblock %}
