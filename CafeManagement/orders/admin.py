@@ -18,7 +18,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
-
 class ReceiptAdmin(admin.ModelAdmin):
     list_display = ('order', 'total_price', 'final_price')
     search_fields = ('order',)
@@ -31,7 +30,6 @@ class Order_menuItemAdmin(admin.ModelAdmin):
     search_fields = ('menuItem',)
     list_filter = ('updated_at',)
     list_per_page = 10
-
 
 
 admin.site.register(Table, TableAdmin)
