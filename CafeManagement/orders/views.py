@@ -31,13 +31,13 @@ class CartView(View):
                 Order_menuItem.objects.create(
                     menuItem=menuItem[0], order=order, quantity=menuItem[1]
                 )
-            response = HttpResponseRedirect(reverse("home"))
-            response.delete_cookie("cart")
             request.session['last_order']=order.id
             if not request.session.get('orders_history'):
                 request.session['orders_history']=[order.id]
             else:
                 request.session['orders_history'].append(order.id)
+            response = HttpResponseRedirect(reverse("customer"))
+            response.delete_cookie("cart")
             return response
         return render(request, "cart.html", context={"info": CartView.info, "form":form, "menuItems": menuItems, "total_price":total_price})
 
