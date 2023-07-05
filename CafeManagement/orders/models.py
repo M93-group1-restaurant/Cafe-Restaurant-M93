@@ -53,11 +53,17 @@ class Order(ModelInfo):
 
 
 class Receipt(ModelInfo):
+    class ConfirmStatusChoice(models.IntegerChoices):
+       UNPAID = 1, "UNPAID ⌚"
+       PAID = 2, "PAID 💲"
+       CANCEL=3, "CANCEL ❌"
+
     order = models.OneToOneField(
         Order, on_delete=models.SET_NULL, related_name="receipt", null=True, blank=True
     )
     total_price = models.IntegerField()
     final_price = models.IntegerField()
+    status = models.IntegerField(choices=ConfirmStatusChoice.choices, default=1, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Receipts"
