@@ -1,3 +1,27 @@
+window.onload = function() {
+  let value = getCookie()
+  if (value) {
+  for (let menuItemId in value) {
+  document.getElementById("cart_item"+menuItemId).classList.toggle('hide');
+  document.getElementById("cart_item"+menuItemId).classList.remove('show');
+  document.getElementById("item"+menuItemId).classList.toggle('hide');
+
+  document.getElementById("plus"+ menuItemId).classList.toggle('show');
+  document.getElementById("plus_item"+menuItemId).classList.toggle('show_a');
+  document.getElementById("plus"+ menuItemId).classList.remove('hide');
+
+  document.getElementById("cart_quantity"+ menuItemId).innerHTML=value[menuItemId]['quantity'];
+
+  document.getElementById("minus"+ menuItemId).classList.toggle('show');
+  document.getElementById("minus_item"+menuItemId).classList.toggle('show_a');
+  document.getElementById("minus"+ menuItemId).classList.remove('hide');
+
+  document.getElementById("trash"+ menuItemId).classList.toggle('show');
+  document.getElementById("trash"+ menuItemId).classList.remove('hide');
+  document.getElementById("trash_bin"+menuItemId).classList.toggle('show_a');
+  }
+}
+}
 function setToMenuCart(menuItemId){
   setItemInCookie(menuItemId)
 
@@ -60,15 +84,19 @@ function decreaseFromMenuCart(menuItemId){
   }
 }
 
-function removeFromCart(menuItemId,price) {
+function removeFromCart(menuItemId, price) {
   let quantity = removeItemFromCookie(menuItemId)
   document.getElementById('cartItem'+menuItemId).innerHTML=""
   document.getElementById('cartItem'+menuItemId).classList.toggle('hide')
   let initial_total_price= document.getElementById('total_price').innerHTML
-  document.getElementById('total_price').innerHTML=initial_total_price-(price*quantity)
+  let final_total_price =initial_total_price-(price*quantity)
+  document.getElementById('total_price').innerHTML=final_total_price
+  if (final_total_price==0){
+    document.getElementById('emptyCart').innerHTML='Your cart is empty'
+  }
 }
 
-function decreaseFromCart(menuItemId,price){
+function decreaseFromCart(menuItemId, price){
   let value = decreaseItemFromCookie(menuItemId)
   let quantity = value[menuItemId]['quantity']
   if (quantity<=0) {
@@ -83,7 +111,6 @@ function decreaseFromCart(menuItemId,price){
 function addToCart(menuItemId,price){
   addItemToCookie(menuItemId)
   let initial_total_price= document.getElementById('total_price').innerHTML
-  console.log(initial_total_price+price)
   document.getElementById('total_price').innerHTML=(+initial_total_price + +price)
 }
 
