@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .forms import CartForm, BookTableForm
 from home.models import RestaurantInfo
-from .models import Order_menuItem, Order, Table
+from .models import Order_menuItem, Order, Table, Receipt
 from menu_items.models import MenuItem
 from django.views import View
 import json
@@ -27,15 +27,18 @@ class CartView(View):
             else:
                 table=None
             order = Order.objects.create(table=table, phone_number=data['phone_number'])
+            reciept = Receipt.objects.create(order=order, total_price=total_price, final_price=total_price)
             for menuItem in menuItems:
                 Order_menuItem.objects.create(
                     menuItem=menuItem[0], order=order, quantity=menuItem[1]
                 )
+
             request.session['last_order']=order.id
             if not request.session.get('orders_history'):
                 request.session['orders_history']=[order.id]
             else:
                 request.session['orders_history'].append(order.id)
+
             response = HttpResponseRedirect(reverse("customer"))
             response.delete_cookie("cart")
             return response
@@ -60,12 +63,9 @@ class CustomerView(View):
     info = RestaurantInfo.objects.first()
 
     def get(self,request):
-        orders_id= request.session.get('orders_history' , [])
-        orders= [Order.objects.get(id= order_id) for order_id in orders_id]
+        orders_id = request.session.get('orders_history' , [])
+        orders = [Order.objects.get(id= order_id) for order_id in orders_id]
         return render(request, "customer.html", context={"orders": orders, "info": CustomerView.info})
-
-    def post(self,request):
-        pass
 
 
 
