@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+  Customer
+{% endblock %}
+
+{% block content %}
+  <section class="cart_section layout_padding">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 ">
+            <div class="heading_container p-3">
+              <h2>
+                Orders history
+              </h2>
+            </div>
+            
+            <div class="text-center"> 
+              <h5 class="card-text" id="emptyCart">
+                {% if not orders %}
+                You haven't order yet ...
+                {% endif %}
+              </h5>
+              <br><br>
+            </div>
+            
+            <ul class="list-group list-group-flush">
+              {% for order in orders %}
+              <li class="list-group-item gap-2" id="cartItem{{menuItem.0.id}}">
+                <div class="row justify-content-between">
+                    <div>
+                        <h5 class="card-title pt-3">{{order.created_at}}</h5>
+                    </div>
+                    <div>
+                        <h5  class="pt-3 card-text"> 500000 T </h5>
+                    </div>
+                </div>               
+                <div class="row p-3">
+                  <div class="p-1 pr-5">
+                    <span class="card-text">{{order.get_serving_status_display}}</span>
+                  </div>                                       
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+     
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  {% endblock %}
