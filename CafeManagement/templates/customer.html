@@ -26,8 +26,13 @@
             <ul class="list-group list-group-flush">
               {% for order in orders %}
               <li class="list-group-item gap-2" id="cartItem{{menuItem.0.id}}">
-                <div class="row">
-                  <h5 class="card-title pt-3">{{order.created_at}}</h5>
+                <div class="row justify-content-between">
+                    <div>
+                        <h5 class="card-title pt-3">{{order.created_at}}</h5>
+                    </div>
+                    <div>
+                        <h5  class="pt-3 card-text"> 500000 T </h5>
+                    </div>
                 </div>               
                 <div class="row p-3">
                   <div class="p-1 pr-5">
