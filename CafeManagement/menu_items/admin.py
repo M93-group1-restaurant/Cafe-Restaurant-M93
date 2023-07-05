@@ -17,14 +17,19 @@ class MenuItemAdmin(admin.ModelAdmin):
     list_filter = ('updated_at',)
     list_per_page = 8
 
+
     @admin.display(description=None)
     def less_description(self, obj):
         return format_html(f'<span style="color:green">{obj.description[:20]}</span>')
 
     def image_preview(self, obj):
-        return format_html('<img src="{}" style="max-height: 200px; max-width: 200px;" />'.format(obj.image.url))
+        return format_html(
+            '<img src="{}" style="max-height: 200px; max-width: 200px;" />'.format(
+                obj.image.url
+            )
+        )
 
-    image_preview.short_description = 'Image Preview'
+    image_preview.short_description = "Image Preview"
 
 
 admin.site.register(MenuItem, MenuItemAdmin)

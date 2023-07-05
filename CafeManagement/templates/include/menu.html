@@ -37,8 +37,40 @@
                   <h6>
                     {{menu_item.price}} T
                   </h6>
-                  <a href="">
-                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                  <div class="row">
+                    <!-- plus_item -->
+                    <div class="p-1">
+                        <a href="javascript:null" onclick="addItemToCookie('{{menu_item.id}}')" id="plus_item{{menu_item.id}}"  class="change">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus{{menu_item.id}}" class="hide">
+                              <rect x="11" y="4" width="2" height="16" fill="#fff"/>
+                              <rect x="4" y="11" width="16" height="2" fill="#fff"/>
+                              <path fill="none" d="M0 0h24v24H0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="p-2"><span id="cart_quantity{{menu_item.id}}"></span></div>
+                <!-- minus_item -->
+                  <div class="p-1">
+                  <a href= "javascript:null" onclick="decreaseFromMenuCart('{{menu_item.id}}')" id="minus_item{{menu_item.id}}" class="change" >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 448" id="minus{{menu_item.id}}" class="hide">
+                      <path d="M32 224c0-8.832 7.168-16 16-16h352c8.832 0 16 7.168 16 16s-7.168 16-16 16H48c-8.832 0-16-7.168-16-16z"/>
+                    </svg>
+                  </a>
+                </div>
+                <!-- trash_bin -->
+                  <div class="p-1">
+                  <a href= "javascript:null" onclick="removeFromMenuCart('{{menu_item.id}}')" id="trash_bin{{menu_item.id}}" class="change">
+        
+                    <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="hide bi bi-trash" viewBox="0 0 16 16" id="trash{{menu_item.id}}"> 
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" fill="white"></path> 
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" fill="white"></path> 
+                    </svg>
+                  </a>
+                </div>
+                  <div class="pr-2">
+                    <!-- cart_item -->
+                  <a href= "javascript:null" onclick="setToMenuCart('{{menu_item.id}}')" id="cart_item{{menu_item.id}}" class="show">
+                    <svg version="1.1" id="item{{menu_item.id}}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                       <g>
                         <g>
                           <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
@@ -92,6 +124,8 @@
                     </svg>
                   </a>
                 </div>
+                </div>
+                  </div>
               </div>
             </div>
           </div>

@@ -37,12 +37,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "core",
     "home",
     "menu_items",
     "user_session",
     "orders",
     "ckeditor",
-
+    # "acounts",
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
+
+# AUTH_USER_MODEL = 'acounts.CustomUser'
+
+# AUTHENTICATION_BACKENDS = [
+#     'acounts.backends.PhoneNumberBackend',
+# ]
