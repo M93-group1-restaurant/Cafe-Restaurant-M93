@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "menu_items",
     "user_session",
     "orders",
+    "ckeditor",
     # "acounts",
 ]
 

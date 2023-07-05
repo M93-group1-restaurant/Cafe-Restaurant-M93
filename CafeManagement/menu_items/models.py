@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import timedelta
+from ckeditor.fields import RichTextField
 from core.models import ModelInfo
 
 
@@ -34,7 +35,7 @@ class MenuItem(ModelInfo):
     estimated_cooking_time = models.DurationField(default=timedelta(seconds=300))
     image = models.ImageField(upload_to="images/", default="", null=True, blank=True)
     is_active = models.BooleanField(default=True)
-    description = models.CharField(max_length=300)
+    description = RichTextField()
 
     class Meta:
         verbose_name_plural = "MenuItems"
