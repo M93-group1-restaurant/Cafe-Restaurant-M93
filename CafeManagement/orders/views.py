@@ -60,9 +60,9 @@ class CustomerView(View):
     info = RestaurantInfo.objects.first()
 
     def get(self,request):
-        orders_id= request.session['orders_history']
+        orders_id= request.session.get('orders_history' , [])
         orders= [Order.objects.get(id= order_id) for order_id in orders_id]
-        return render(request, "customer.html", context={"orders": orders "info": CustomerView.info})
+        return render(request, "customer.html", context={"orders": orders, "info": CustomerView.info})
 
     def post(self,request):
         pass
