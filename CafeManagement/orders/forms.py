@@ -7,13 +7,13 @@ class CartForm(forms.Form):
             attrs={"placeholder": "Your phone number", "class": "form-control"}
         ),
         label="",
+        required=False,
     )
     table_number = forms.IntegerField(
         widget=forms.TextInput(
             attrs={"placeholder": "Table number", "class": "form-control"}
         ),
         label="",
-        required=False,
     )
 
 

@@ -28,11 +28,13 @@
               </div>
               <div class="detail-box">
                 <h5>
-                  {{menu_item.name}}
+                  {{menu_item.title}}
                 </h5>
+                <div>
                 <p>
-                  {{menu_item.description}}
+                  {{menu_item.description|safe}}
                 </p>
+              </div>
                 <div class="options">
                   <h6>
                     {{menu_item.price}} T
