@@ -1,13 +1,19 @@
+from django.core.validators import RegexValidator
+from django.utils.translation import gettext_lazy as _
 from django import forms
 
 
 class CartForm(forms.Form):
+    phone_regex = RegexValidator(
+        regex=r"^(\+?|0*)(98)?9[\d-]{9,}$", message=_("invalid phone number")
+    )
     phone_number = forms.CharField(
         widget=forms.TextInput(
             attrs={"placeholder": "Your phone number", "class": "form-control"}
         ),
         label="",
         required=False,
+        validators=[phone_regex]
     )
     table_number = forms.IntegerField(
         widget=forms.TextInput(
