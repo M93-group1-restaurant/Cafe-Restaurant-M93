@@ -10,8 +10,8 @@ from .managers import CustomUserManager
 
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     phone_regex = RegexValidator(
-        regex=r'^[0-9]{11}$',
-        message="invalid phone number"
+        regex=r'^(\+?|0*)(98)?9[\d-]{9,}$',
+        message=_("invalid phone number")
     )
 
     phone_number=models.CharField(_("phone number"),max_length=14, unique=True, validators=[phone_regex])
