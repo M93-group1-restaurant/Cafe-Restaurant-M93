@@ -1,8 +1,7 @@
 from django.db import models
 from menu_items.models import MenuItem
 from core.models import ModelInfo
-from django.utils.translation import gettext_lazy as _
-from django.core.validators import RegexValidator
+from core.utils import get_phonenumber_regex
 
 
 class Table(ModelInfo):
@@ -39,9 +38,7 @@ class Order(ModelInfo):
     serving_status = models.IntegerField(choices=ServeStatusChoice.choices, default=1)
     start_reserve_date = models.DateTimeField(null=True, blank=True)
     end_reserve_date = models.DateTimeField(null=True, blank=True)
-    phone_regex = RegexValidator(
-        regex=r"^(\+?|0*)(98)?9[\d-]{9,}$", message=_("invalid phone number")
-    )
+    phone_regex = get_phonenumber_regex()
     phone_number = models.CharField(
         max_length=14, null=True, blank=True, validators=[phone_regex]
     )

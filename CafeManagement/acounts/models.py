@@ -6,18 +6,15 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from datetime import timezone
+from core.utils import get_phonenumber_regex
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import RegexValidator
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from .managers import CustomUserManager
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    phone_regex = RegexValidator(
-        regex=r"^(\+?|0*)(98)?9[\d-]{9,}$", message=_("invalid phone number")
-    )
-
+    phone_regex = get_phonenumber_regex()
     phone_number = models.CharField(
         _("phone number"), max_length=14, unique=True, validators=[phone_regex]
     )
