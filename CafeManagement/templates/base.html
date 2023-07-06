@@ -15,7 +15,11 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
 
-  <title> Group "One" Cafe_Restuarant  </title>
+  <title>
+    {% block title %}
+      
+    {% endblock %}   
+  </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -28,6 +32,8 @@
 
   <link href="{% static '/css/font-awesome.min.css' %}" rel="stylesheet" />
 
+    <link href="https://fonts.googleapis.com/css?family=FontName" rel="stylesheet"/>
+
   <!-- Custom styles for this template -->
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
@@ -37,14 +43,16 @@
 <body class="sub_page">
 
   {% include 'include/header.html' %}
-{% block content %}
+  {% block content %}
 
 
-{% endblock %}
-{% include 'include/footer.html' %}
-{% load static %}
+  {% endblock %}
+  {% include 'include/footer.html' %}
+  {% load static %}
  <!-- jQery -->
  <script src="{% static '/js/jquery-3.4.1.min.js' %}"></script>
+ <!-- cart -->
+ <script src="{% static '/js/cart.js' %}"></script>
  <!-- popper js -->
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
  </script>
@@ -59,10 +67,6 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
  <!-- custom js -->
  <script src="{% static 'js/custom.js' %}"></script>
- <!-- Google Map -->
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
- </script>
- <!-- End Google Map -->
 
 </body>
 

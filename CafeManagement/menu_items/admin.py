@@ -1,10 +1,36 @@
 from django.contrib import admin
 from .models import MenuItem, Category
+from django.utils.html import format_html
 
 
-# if admin.site.is_registered(MenuItem):
-#     admin.site.unregister(MenuItem)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ("name",)
+    list_filter = ('updated_at',)
+    list_per_page = 10
 
 
-admin.site.register(MenuItem)
-admin.site.register(Category)
+class MenuItemAdmin(admin.ModelAdmin):
+    list_display = ('image_preview', 'price', 'category', 'less_description',)
+    list_display_links = ('less_description',)
+    search_fields = ("name",)
+    list_filter = ('updated_at',)
+    list_per_page = 8
+
+
+    @admin.display(description=None)
+    def less_description(self, obj):
+        return format_html(f'<span style="color:green">{obj.description[:20]}</span>')
+
+    def image_preview(self, obj):
+        return format_html(
+            '<img src="{}" style="max-height: 200px; max-width: 200px;" />'.format(
+                obj.image.url
+            )
+        )
+
+    image_preview.short_description = "Image Preview"
+
+
+admin.site.register(MenuItem, MenuItemAdmin)
+admin.site.register(Category, CategoryAdmin)

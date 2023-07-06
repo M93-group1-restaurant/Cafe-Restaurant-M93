@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}
+  {{info.title}} Restuarant
+{% endblock %}
+
 {% load static %}
+
 {% block content %}
 <br>
   {% include 'include/menu.html' %}
