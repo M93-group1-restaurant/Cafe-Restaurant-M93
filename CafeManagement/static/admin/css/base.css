@@ -5,9 +5,9 @@
 /* VARIABLE DEFINITIONS */
 html[data-theme="light"],
 :root {
-    --primary: #79aec8;
-    --secondary: #417690;
-    --accent: #f5dd5d;
+    --primary: #1f150c;
+    --secondary: #1f150c;
+    --accent: #0a0a0a;
     --primary-fg: #fff;
 
     --body-fg: #333;
@@ -15,7 +15,7 @@ html[data-theme="light"],
     --body-quiet-color: #666;
     --body-loud-color: #000;
 
-    --header-color: #ffc;
+    --header-color: #0c0c0b;
     --header-branding-color: var(--accent);
     --header-bg: var(--secondary);
     --header-link-color: var(--primary-fg);
@@ -24,9 +24,9 @@ html[data-theme="light"],
     --breadcrumbs-link-fg: var(--body-bg);
     --breadcrumbs-bg: var(--primary);
 
-    --link-fg: #417893;
-    --link-hover-color: #036;
-    --link-selected-fg: #5b80b2;
+    --link-fg: #0e0e0a;
+    --link-hover-color: #0c0c0a;
+    --link-selected-fg: #e0c761;
 
     --hairline-color: #e8e8e8;
     --border-color: #ccc;
@@ -43,7 +43,7 @@ html[data-theme="light"],
 
     --button-fg: #fff;
     --button-bg: var(--primary);
-    --button-hover-bg: #609ab6;
+    --button-hover-bg: #f5d40a;
     --default-button-bg: var(--secondary);
     --default-button-hover-bg: #205067;
     --close-button-bg: #747474;
@@ -99,7 +99,7 @@ body {
     font-family: var(--font-family-primary);
     color: var(--body-fg);
     background: var(--body-bg);
-    background-color: #ac5034;
+    background-color: #1f150c;
 }
 
 /* LINKS */
@@ -1112,6 +1112,7 @@ a.deletelink:focus, a.deletelink:hover {
     background: none;
     color: var(--link-fg);
 }
+
 
 .paginator a.showall:focus, .paginator a.showall:hover {
     background: none;
