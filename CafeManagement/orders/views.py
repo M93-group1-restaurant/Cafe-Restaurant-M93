@@ -45,8 +45,8 @@ class CartView(View):
         return render(request, "cart.html", context={"info": CartView.info, "form":form, "menuItems": menuItems, "total_price":total_price})
 
         
-    @classmethod
-    def load_cookie(cls,request):
+    @staticmethod
+    def load_cookie(request):
         try:
             order_items = json.loads(request.COOKIES["cart"])
             menuItems=[(MenuItem.objects.get(id=i),j["quantity"]) for i,j in order_items.items()]
