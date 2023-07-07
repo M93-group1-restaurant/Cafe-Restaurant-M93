@@ -1,9 +1,4 @@
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    PermissionsMixin,
-    AbstractUser,
-    Group,
-)
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Group
 from django.db import models
 from datetime import timezone
 from core.utils import get_phonenumber_regex

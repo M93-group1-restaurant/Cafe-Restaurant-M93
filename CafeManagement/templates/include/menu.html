@@ -30,9 +30,9 @@
                 <h5>
                   {{menu_item.title}}
                 </h5>
-                <div>
+                <div style="height: 50px;">
                 <p>
-                  {{menu_item.description|safe}}
+                  {{menu_item.description|safe|truncatewords:"8"}}
                 </p>
               </div>
                 <div class="options">
@@ -69,8 +69,8 @@
                     </svg>
                   </a>
                 </div>
+                  <!-- cart_item -->
                   <div class="pr-2">
-                    <!-- cart_item -->
                   <a href= "javascript:null" onclick="setToMenuCart('{{menu_item.id}}')" id="cart_item{{menu_item.id}}" class="show">
                     <svg version="1.1" id="item{{menu_item.id}}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                       <g>
