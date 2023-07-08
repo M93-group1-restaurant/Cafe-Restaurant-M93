@@ -31,8 +31,7 @@ class CartView(View):
         form = CartForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            table = Table.objects.get(number=data["table_number"])
-            order = Order.objects.create(table=table, phone_number=data["phone_number"])
+            order = Order.objects.create(table=data["table"], phone_number=data["phone_number"])
             reciept = Receipt.objects.create(
                 order=order, total_price=total_price, final_price=total_price
             )

@@ -1,25 +1,22 @@
 from django import forms
 from core.utils import get_phonenumber_regex
+from .models import Order, Table
 
 
-class CartForm(forms.Form):
-    phone_regex = get_phonenumber_regex()
-    phone_number = forms.CharField(
-        widget=forms.TextInput(
-            attrs={"placeholder": "Your phone number", "class": "form-control"}
-        ),
-        label="",
-        required=False,
-        validators=[phone_regex]
-    )
-    table_number = forms.IntegerField(
-        widget=forms.TextInput(
-            attrs={"placeholder": "Table number", "class": "form-control"}
-        ),
-        label="",
-    )
-
-
+class CartForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('table', 'phone_number')
+        widgets = {
+            'phone_number':forms.TextInput(attrs={"placeholder": "Your phone number", "class": "form-control"}),
+            # 'table':forms.Select(),
+        }
+        labels = {'phone_number':"", 'table':"",}
+    def __init__(self, *args, **kwargs):
+        super(CartForm, self).__init__(*args, **kwargs)
+        self.initial['table'] = Table.objects.first()
+ 
+    
 class BookTableForm(forms.Form):
     choices = [
         ("", "How many person?"),

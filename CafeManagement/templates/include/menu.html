@@ -20,7 +20,7 @@
       <div class="row grid">
         {% for menu_item in menu %}
         
-        <div class="col-sm-6 col-lg-4 all {{menu_item.category}}">
+        <div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 all {{menu_item.category}}">
           <div class="box">
             <div>
               <div class="img-box">
@@ -50,7 +50,7 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="p-2"><span id="cart_quantity{{menu_item.id}}"></span></div>
+                    <div class="p-1"><span id="cart_quantity{{menu_item.id}}"></span></div>
                 <!-- minus_item -->
                   <div class="p-1">
                   <a href= "javascript:null" onclick="decreaseFromMenuCart('{{menu_item.id}}')" id="minus_item{{menu_item.id}}" class="change" >
