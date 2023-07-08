@@ -9,7 +9,7 @@ class CartForm(forms.ModelForm):
         fields = ('table', 'phone_number')
         widgets = {
             'phone_number':forms.TextInput(attrs={"placeholder": "Your phone number", "class": "form-control"}),
-            'table':forms.Select(),
+            # 'table':forms.Select(),
         }
         labels = {'phone_number':"", 'table':"",}
     def __init__(self, *args, **kwargs):

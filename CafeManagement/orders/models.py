@@ -9,6 +9,8 @@ class Table(ModelInfo):
     number = models.IntegerField()
     space_position = models.CharField(max_length=250)
     capacity = models.PositiveIntegerField()
+    start_reserve_date = models.DateTimeField(null=True, blank=True)
+    end_reserve_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Tables"
@@ -36,8 +38,6 @@ class Order(ModelInfo):
 
     delivery_status = models.IntegerField(choices=DeliveryChoice.choices, default=3)
     serving_status = models.IntegerField(choices=ServeStatusChoice.choices, default=1)
-    start_reserve_date = models.DateTimeField(null=True, blank=True)
-    end_reserve_date = models.DateTimeField(null=True, blank=True)
     phone_regex = get_phonenumber_regex()
     phone_number = models.CharField(
         max_length=14, null=True, blank=True, validators=[phone_regex]
