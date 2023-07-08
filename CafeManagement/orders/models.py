@@ -31,7 +31,7 @@ class Order(ModelInfo):
         CANCEL = 5, "CANCEL ❌"
 
     table = models.ForeignKey(
-        "Table", on_delete=models.SET_NULL, related_name="orders", null=True, blank=True
+        "Table", on_delete=models.SET_NULL, related_name="orders", null=True
     )
 
     delivery_status = models.IntegerField(choices=DeliveryChoice.choices, default=3)
