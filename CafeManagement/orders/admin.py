@@ -1,11 +1,19 @@
 from django.contrib import admin
-from .models import Order, Receipt, Table, Order_menuItem
+from .models import Order, Receipt, Table, Order_menuItem, Reserve
 
 
 class TableAdmin(admin.ModelAdmin):
     fields = ("number", "space_position", "capacity")
     list_display = ("number", "capacity", "space_position")
     search_fields = ("number",)
+    list_filter = ("updated_at",)
+    list_per_page = 10
+
+
+@admin.register(Reserve)
+class ReserveAdmin(admin.ModelAdmin):
+    list_display = ("table", "start_reserve_date", "end_reserve_date", "phone_number")
+    search_fields = ("start_reserve_date",)
     list_filter = ("updated_at",)
     list_per_page = 10
 
