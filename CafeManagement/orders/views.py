@@ -104,7 +104,7 @@ class BookView(View):
         form = BookTableForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            table= Table.objects.filter(capacity__gte=data["number"],reserves).order_by("capacity").first()
+            # table= Table.objects.filter(capacity__gte=data["number"],reserves).order_by("capacity").first()
             # if table:
             #     Reserve.objects.create(phone_number=data['phone_number'], reserve_date=data['date'], start_reserve_time=data['time'], end_reserve_time=data['time']+timedelta(seconds=3600), table=table)
             return redirect("home")
