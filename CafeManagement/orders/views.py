@@ -6,7 +6,7 @@ from home.models import RestaurantInfo
 from .models import Order_menuItem, Order, Table, Receipt, Reserve
 from menu_items.models import MenuItem
 from django.views import View
-# from time import 
+from django.db.models import Q
 import json
 
 
@@ -104,10 +104,17 @@ class BookView(View):
         form = BookTableForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            # table= Table.objects.filter(capacity__gte=data["number"],reserves).order_by("capacity").first()
-            # if table:
-            #     Reserve.objects.create(phone_number=data['phone_number'], reserve_date=data['date'], start_reserve_time=data['time'], end_reserve_time=data['time']+timedelta(seconds=3600), table=table)
-            return redirect("home")
+            tables= Table.objects.filter(capacity__gte=data["number"]).order_by("capacity")
+            for table in tables:
+                reserves=table.reserves.filter((Q(start_reserve_time__lt=data['end_time']) & Q(start_reserve_time__gte=data['start_time'])) | (Q(end_reserve_time__lte=data['end_time']) & Q(end_reserve_time__gt=data['start_time'])) | (Q(start_reserve_time__lte=data['start_time']) & Q(end_reserve_time__gte=data['end_time'])))
+                if not reserves:
+                    selected_table=table
+                    break
+            else:
+                selected_table=None
+            if selected_table:
+                Reserve.objects.create(phone_number=data['phone_number'], reserve_date=data['date'], start_reserve_time=data['start_time'], end_reserve_time=data['end_time'], table=table)
+                return redirect("home")
         return render(
             request, "book.html", context={"form": form, "info": CartView.info}
         )
