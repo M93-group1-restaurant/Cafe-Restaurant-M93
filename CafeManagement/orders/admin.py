@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order, Receipt, Table, Order_menuItem
+from .models import Order, Receipt, Table, Order_menuItem, Reserve
 
 
 @admin.register(Table)
@@ -14,6 +14,14 @@ class TableAdmin(admin.ModelAdmin):
 class OrderMenuItemInline(admin.TabularInline):
     model=Order_menuItem
     extra=3
+
+
+@admin.register(Reserve)
+class ReserveAdmin(admin.ModelAdmin):
+    list_display = ("table", "reserve_date", "start_reserve_time", "end_reserve_time", "phone_number")
+    search_fields = ("reserve_date",)
+    list_filter = ("updated_at", "reserve_date")
+    list_per_page = 10
 
 
 @admin.register(Order)

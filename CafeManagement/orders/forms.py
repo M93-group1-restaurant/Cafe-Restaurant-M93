@@ -26,24 +26,26 @@ class BookTableForm(forms.Form):
         ("5", "5"),
         ("6", "6"),
     ]
-    name = forms.CharField(
-        widget=forms.TextInput(
-            attrs={"placeholder": "Your name", "class": "form-control"}
-        ),
-        label="",
-    )
+    # name = forms.CharField(
+    #     widget=forms.TextInput(
+    #         attrs={"placeholder": "Your name (optional)", "class": "form-control"}
+    #     ),
+    #     label="",
+    #     required= False
+    # )
     phone_number = forms.CharField(
         widget=forms.TextInput(
             attrs={"placeholder": "Your phone number", "class": "form-control"}
         ),
         label="",
     )
-    email = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={"placeholder": "Your email", "class": "form-control"}
-        ),
-        label="",
-    )
+    # email = forms.EmailField(
+    #     widget=forms.EmailInput(
+    #         attrs={"placeholder": "Your email (optional)", "class": "form-control"}
+    #     ),
+    #     label="",
+    #     required= False
+    # )
     date = forms.DateField(
         widget=forms.DateInput(
             attrs={"placeholder": "YYYY-MM-DD", "type": "date", "class": "form-control"}

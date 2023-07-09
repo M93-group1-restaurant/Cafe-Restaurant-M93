@@ -3,9 +3,10 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .forms import CartForm, BookTableForm
 from home.models import RestaurantInfo
-from .models import Order_menuItem, Order, Table, Receipt
+from .models import Order_menuItem, Order, Table, Receipt, Reserve
 from menu_items.models import MenuItem
 from django.views import View
+# from time import 
 import json
 
 
@@ -103,7 +104,9 @@ class BookView(View):
         form = BookTableForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            print(data)
+            # table= Table.objects.filter(capacity__gte=data["number"],reserves).order_by("capacity").first()
+            # if table:
+            #     Reserve.objects.create(phone_number=data['phone_number'], reserve_date=data['date'], start_reserve_time=data['time'], end_reserve_time=data['time']+timedelta(seconds=3600), table=table)
             return redirect("home")
         return render(
             request, "book.html", context={"form": form, "info": CartView.info}
