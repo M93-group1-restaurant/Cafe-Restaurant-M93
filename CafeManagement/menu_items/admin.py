@@ -3,6 +3,7 @@ from .models import MenuItem, Category
 from django.utils.html import format_html
 
 
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name",)
     search_fields = ("name",)
@@ -10,6 +11,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
+@admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
     list_display = (
         "image_preview",
@@ -18,7 +20,7 @@ class MenuItemAdmin(admin.ModelAdmin):
         "less_description",
     )
     list_display_links = ("less_description",)
-    search_fields = ("name",)
+    search_fields = ("title",)
     list_filter = ("updated_at",)
     list_per_page = 8
 
@@ -28,7 +30,7 @@ class MenuItemAdmin(admin.ModelAdmin):
 
     def image_preview(self, obj):
         return format_html(
-            '<img src="{}" style="max-height: 200px; max-width: 200px;" />'.format(
+            '<img src="{}" style="max-height: 100px; max-width: 100px;" />'.format(
                 obj.image.url
             )
         )
@@ -36,5 +38,5 @@ class MenuItemAdmin(admin.ModelAdmin):
     image_preview.short_description = "Image Preview"
 
 
-admin.site.register(MenuItem, MenuItemAdmin)
-admin.site.register(Category, CategoryAdmin)
+# admin.site.register(MenuItem, MenuItemAdmin)
+# admin.site.register(Category, CategoryAdmin)
