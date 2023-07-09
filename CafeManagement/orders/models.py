@@ -19,13 +19,13 @@ class Table(ModelInfo):
 
 class Reserve(ModelInfo):
     phone_regex = get_phonenumber_regex()
-    phone_number = models.CharField(
-        max_length=14, validators=[phone_regex]
-    )
+    phone_number = models.CharField(max_length=14, validators=[phone_regex])
     reserve_date = models.DateField()
     start_reserve_time = models.TimeField()
     end_reserve_time = models.TimeField()
-    table = models.ForeignKey("Table", on_delete = models.RESTRICT, related_name="reserves")
+    table = models.ForeignKey(
+        "Table", on_delete=models.RESTRICT, related_name="reserves"
+    )
 
 
 class Order(ModelInfo):

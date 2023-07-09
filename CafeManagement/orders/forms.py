@@ -6,17 +6,23 @@ from .models import Order, Table
 class CartForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('table', 'phone_number')
+        fields = ("table", "phone_number")
         widgets = {
-            'phone_number':forms.TextInput(attrs={"placeholder": "Your phone number", "class": "form-control"}),
+            "phone_number": forms.TextInput(
+                attrs={"placeholder": "Your phone number", "class": "form-control"}
+            ),
             # 'table':forms.Select(),
         }
-        labels = {'phone_number':"", 'table':"",}
+        labels = {
+            "phone_number": "",
+            "table": "",
+        }
+
     def __init__(self, *args, **kwargs):
         super(CartForm, self).__init__(*args, **kwargs)
-        self.initial['table'] = Table.objects.first()
- 
-    
+        self.initial["table"] = Table.objects.first()
+
+
 class BookTableForm(forms.Form):
     choices = [
         ("", "How many person?"),
@@ -53,11 +59,25 @@ class BookTableForm(forms.Form):
         label="",
     )
     start_time = forms.TimeField(
-        widget=forms.TimeInput(attrs={"type": "text", 'onfocus': "(this.type='time')", "class": "form-control", "placeholder":"start time"}),
+        widget=forms.TimeInput(
+            attrs={
+                "type": "text",
+                "onfocus": "(this.type='time')",
+                "class": "form-control",
+                "placeholder": "start time",
+            }
+        ),
         label="",
     )
     end_time = forms.TimeField(
-        widget=forms.TimeInput(attrs={"type": "text", 'onfocus': "(this.type='time')", "class": "form-control", "placeholder":"end time"}),
+        widget=forms.TimeInput(
+            attrs={
+                "type": "text",
+                "onfocus": "(this.type='time')",
+                "class": "form-control",
+                "placeholder": "end time",
+            }
+        ),
         label="",
     )
     number = forms.ChoiceField(

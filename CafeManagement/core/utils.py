@@ -7,4 +7,3 @@ def get_phonenumber_regex():
         regex=r"^(\+?|0*)(98)?9[\d-]{9,}$", message=_("invalid phone number")
     )
     return phone_regex
-    

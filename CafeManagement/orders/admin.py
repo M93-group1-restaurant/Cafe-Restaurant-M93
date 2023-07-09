@@ -12,13 +12,19 @@ class TableAdmin(admin.ModelAdmin):
 
 
 class OrderMenuItemInline(admin.TabularInline):
-    model=Order_menuItem
-    extra=3
+    model = Order_menuItem
+    extra = 3
 
 
 @admin.register(Reserve)
 class ReserveAdmin(admin.ModelAdmin):
-    list_display = ("table", "reserve_date", "start_reserve_time", "end_reserve_time", "phone_number")
+    list_display = (
+        "table",
+        "reserve_date",
+        "start_reserve_time",
+        "end_reserve_time",
+        "phone_number",
+    )
     search_fields = ("reserve_date",)
     list_filter = ("updated_at", "reserve_date")
     list_per_page = 10
@@ -34,7 +40,9 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ("updated_at",)
     radio_fields = {"serving_status": admin.HORIZONTAL}
     list_editable = ("serving_status",)
-    inlines=[OrderMenuItemInline,]
+    inlines = [
+        OrderMenuItemInline,
+    ]
     list_per_page = 10
 
 
@@ -50,11 +58,10 @@ class ReceiptAdmin(admin.ModelAdmin):
 @admin.register(Order_menuItem)
 class Order_menuItemAdmin(admin.ModelAdmin):
     list_display = ("menuItem", "quantity")
-    list_filter = ("updated_at","menuItem")
+    list_filter = ("updated_at", "menuItem")
     # search_fields = ("menuItem",)
     autocomplete_fields = ("menuItem",)
     list_per_page = 10
-
 
 
 # admin.site.register(Table, TableAdmin)
