@@ -12,9 +12,9 @@ class TableAdmin(admin.ModelAdmin):
 
 @admin.register(Reserve)
 class ReserveAdmin(admin.ModelAdmin):
-    list_display = ("table", "start_reserve_date", "end_reserve_date", "phone_number")
-    search_fields = ("start_reserve_date",)
-    list_filter = ("updated_at",)
+    list_display = ("table", "reserve_date", "start_reserve_time", "end_reserve_time", "phone_number")
+    search_fields = ("reserve_date",)
+    list_filter = ("updated_at", "reserve_date")
     list_per_page = 10
 
 

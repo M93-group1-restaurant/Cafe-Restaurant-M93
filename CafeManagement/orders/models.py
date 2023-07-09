@@ -22,8 +22,9 @@ class Reserve(ModelInfo):
     phone_number = models.CharField(
         max_length=14, validators=[phone_regex]
     )
-    start_reserve_date = models.DateTimeField()
-    end_reserve_date = models.DateTimeField()
+    reserve_date = models.DateField()
+    start_reserve_time = models.TimeField()
+    end_reserve_time = models.TimeField()
     table = models.ForeignKey("Table", on_delete = models.RESTRICT, related_name="reserves")
 
 
