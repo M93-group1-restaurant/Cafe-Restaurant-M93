@@ -9,14 +9,23 @@ class Table(ModelInfo):
     number = models.IntegerField()
     space_position = models.CharField(max_length=250)
     capacity = models.PositiveIntegerField()
-    start_reserve_date = models.DateTimeField(null=True, blank=True)
-    end_reserve_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Tables"
 
     def __str__(self):
         return f"table {self.number}"
+
+
+class Reserve(ModelInfo):
+    phone_regex = get_phonenumber_regex()
+    phone_number = models.CharField(max_length=14, validators=[phone_regex])
+    reserve_date = models.DateField()
+    start_reserve_time = models.TimeField()
+    end_reserve_time = models.TimeField()
+    table = models.ForeignKey(
+        "Table", on_delete=models.RESTRICT, related_name="reserves"
+    )
 
 
 class Order(ModelInfo):

@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}
-  {{info.title}} Restuarant
+  {{info.title}} Restaurant
 {% endblock %}
 
 {% load static %}
 
 {% block content %}
-<br>
   {% include 'include/menu.html' %}
   {% include 'include/about.html' %}
 {# {% include 'include/offer.html' %} #}
