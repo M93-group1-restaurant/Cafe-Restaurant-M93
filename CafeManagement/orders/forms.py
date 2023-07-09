@@ -52,8 +52,12 @@ class BookTableForm(forms.Form):
         ),
         label="",
     )
-    time = forms.TimeField(
-        widget=forms.TimeInput(attrs={"type": "time", "class": "form-control"}),
+    start_time = forms.TimeField(
+        widget=forms.TimeInput(attrs={"type": "text", 'onfocus': "(this.type='time')", "class": "form-control", "placeholder":"start time"}),
+        label="",
+    )
+    end_time = forms.TimeField(
+        widget=forms.TimeInput(attrs={"type": "text", 'onfocus': "(this.type='time')", "class": "form-control", "placeholder":"end time"}),
         label="",
     )
     number = forms.ChoiceField(
