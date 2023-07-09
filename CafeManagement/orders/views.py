@@ -7,6 +7,7 @@ from .models import Order_menuItem, Order, Table, Receipt, Reserve
 from menu_items.models import MenuItem
 from django.views import View
 from django.db.models import Q
+from django.contrib import messages
 import json
 
 
@@ -106,7 +107,7 @@ class BookView(View):
             data = form.cleaned_data
             tables= Table.objects.filter(capacity__gte=data["number"]).order_by("capacity")
             for table in tables:
-                reserves=table.reserves.filter((Q(start_reserve_time__lt=data['end_time']) & Q(start_reserve_time__gte=data['start_time'])) | (Q(end_reserve_time__lte=data['end_time']) & Q(end_reserve_time__gt=data['start_time'])) | (Q(start_reserve_time__lte=data['start_time']) & Q(end_reserve_time__gte=data['end_time'])))
+                reserves=table.reserves.filter((Q(start_reserve_time__lt=data['end_time']) & Q(start_reserve_time__gte=data['start_time']) & Q(reserve_date=data['date'])) | (Q(end_reserve_time__lte=data['end_time']) & Q(end_reserve_time__gt=data['start_time']) & Q(reserve_date=data['date'])) | (Q(start_reserve_time__lte=data['start_time']) & Q(end_reserve_time__gte=data['end_time']) &  Q(reserve_date=data['date'])))
                 if not reserves:
                     selected_table=table
                     break
@@ -114,7 +115,9 @@ class BookView(View):
                 selected_table=None
             if selected_table:
                 Reserve.objects.create(phone_number=data['phone_number'], reserve_date=data['date'], start_reserve_time=data['start_time'], end_reserve_time=data['end_time'], table=table)
+                messages.success(request, f"Table reservation was done successfully. Table number:{selected_table.number}" )
                 return redirect("home")
+            messages.error(request, "Sorry. There is no empty table with the capacity and time you want.")
         return render(
             request, "book.html", context={"form": form, "info": CartView.info}
         )
