@@ -28,9 +28,10 @@ class BookTableForm(forms.Form):
     ]
     name = forms.CharField(
         widget=forms.TextInput(
-            attrs={"placeholder": "Your name", "class": "form-control"}
+            attrs={"placeholder": "Your name (optional)", "class": "form-control"}
         ),
         label="",
+        required= False
     )
     phone_number = forms.CharField(
         widget=forms.TextInput(
@@ -40,9 +41,10 @@ class BookTableForm(forms.Form):
     )
     email = forms.EmailField(
         widget=forms.EmailInput(
-            attrs={"placeholder": "Your email", "class": "form-control"}
+            attrs={"placeholder": "Your email (optional)", "class": "form-control"}
         ),
         label="",
+        required= False
     )
     date = forms.DateField(
         widget=forms.DateInput(
