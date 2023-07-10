@@ -50,7 +50,7 @@ class CashierView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request):
         orders = Order.objects.all()
         menuItems = MenuItem.objects.all()
-        return render(request, 'cashier.html', context={"orders":orders, "menuItems": menuItems})
+        return render(request, 'dashboard.html', context={"orders":orders, "menuItems": menuItems})
     
     def post(self, request):
         ...
@@ -59,7 +59,6 @@ class CashierView(LoginRequiredMixin, UserPassesTestMixin, View):
 class ManagerView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     login_url = '/login/'
-    redirect_field_name = 'redirect_to'
 
     def test_func(self): 
         result = self.request.user.groups.filter(name="manager").exists()
@@ -69,7 +68,7 @@ class ManagerView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def get(self, request):
         reciepts = Receipt.objects.all()
-        return render(request, 'manager.html', context={"reciepts":reciepts})
+        return render(request, 'dashboard.html', context={"reciepts":reciepts})
 
 
 
