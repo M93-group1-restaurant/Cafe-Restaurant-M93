@@ -6,7 +6,19 @@ from menu_items.models import MenuItem
 from core.utils import is_member
 
 
+class LoginView(View):
+    
+    def get(self, request):
+        return render(request,'login.html')
+    
+    def post(self, request):
+        ...
+
+
 class CashierView(LoginRequiredMixin, UserPassesTestMixin, View):
+    
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     
     def test_func(self):
         result= is_member(self.request.user, "cashier") or is_member(self.request.user, "manager")
@@ -22,6 +34,8 @@ class CashierView(LoginRequiredMixin, UserPassesTestMixin, View):
 
 
 class ManagerView(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    login_url = '/login/'
 
     def test_func(self):
         return is_member(self.request.user, "manager")
