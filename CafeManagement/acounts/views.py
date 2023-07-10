@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
 
 class LoginView(View):
-    template_name = 'login.html'
+    template_name = 'acounts/login.html'
     def get(self, request, *args, **kwargs):
         
         form = LoginForm()
@@ -37,7 +37,7 @@ class LogoutView(View):
         return HttpResponseRedirect(reverse('login'))
 
 
-class CashierView(LoginRequiredMixin, UserPassesTestMixin, View):
+class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     
     login_url = '/login/'
     
@@ -50,25 +50,26 @@ class CashierView(LoginRequiredMixin, UserPassesTestMixin, View):
     def get(self, request):
         orders = Order.objects.all()
         menuItems = MenuItem.objects.all()
-        return render(request, 'dashboard.html', context={"orders":orders, "menuItems": menuItems})
+        reciepts = Receipt.objects.all()
+        return render(request, 'acounts/dashboard.html', context={"orders":orders, "menuItems": menuItems, "reciepts":reciepts})
     
     def post(self, request):
         ...
 
 
-class ManagerView(LoginRequiredMixin, UserPassesTestMixin, View):
+# class ManagerView(LoginRequiredMixin, UserPassesTestMixin, View):
 
-    login_url = '/login/'
+#     login_url = '/login/'
 
-    def test_func(self): 
-        result = self.request.user.groups.filter(name="manager").exists()
-        if not result:
-            raise Http404
-        return result
+#     def test_func(self): 
+#         result = self.request.user.groups.filter(name="manager").exists()
+#         if not result:
+#             raise Http404
+#         return result
 
-    def get(self, request):
-        reciepts = Receipt.objects.all()
-        return render(request, 'dashboard.html', context={"reciepts":reciepts})
+#     def get(self, request):
+#         reciepts = Receipt.objects.all()
+#         return render(request, 'manager.html', context={"reciepts":reciepts})
 
 
 
