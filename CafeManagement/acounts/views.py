@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import View
 
-@login_required
-class CashierView(View):
+
+class CashierView(LoginRequiredMixin, PermissionRequiredMixin, View):
     
     def get(self, request):
         ...
@@ -11,8 +11,8 @@ class CashierView(View):
     def post(self, request):
         ...
 
-@login_required
-class ManagerView(View):
+
+class ManagerView(LoginRequiredMixin, PermissionRequiredMixin, View):
 
     def get(self, request):
         ...
