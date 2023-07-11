@@ -22,7 +22,15 @@ class CustomUserAdmin(UserAdmin):
         (None, {"fields": ("phone_number", "password")}),
         (
             "Permissions",
-            {"fields": ("is_staff", "is_active", "groups", "user_permissions", "is_superuser")},
+            {
+                "fields": (
+                    "is_staff",
+                    "is_active",
+                    "groups",
+                    "user_permissions",
+                    "is_superuser",
+                )
+            },
         ),
     )
     add_fieldsets = (
@@ -38,7 +46,7 @@ class CustomUserAdmin(UserAdmin):
                     "is_active",
                     "groups",
                     "user_permissions",
-                    "is_superuser"
+                    "is_superuser",
                 ),
             },
         ),

@@ -75,16 +75,21 @@ class BookTableForm(forms.Form):
         required=True,
         widget=forms.Select(attrs={"class": "form-control"}),
     )
-    
+
     def clean(self):
         form_data = self.cleaned_data
-        if form_data['date'] < date.today():
+        if form_data["date"] < date.today():
             self._errors["date"] = ["Reservation date can't be in the past."]
-            del form_data['date']
-        elif form_data['date'] == date.today() and form_data['start_time'] < datetime.now().time():
+            del form_data["date"]
+        elif (
+            form_data["date"] == date.today()
+            and form_data["start_time"] < datetime.now().time()
+        ):
             self._errors["start_time"] = ["Start time can't be in the past."]
-            del form_data['start_time']
-        elif form_data['start_time'] >= form_data['end_time']:
-            self._errors["end_time"] = ["End time of reservation must be after start time."]
-            del form_data['end_time']
+            del form_data["start_time"]
+        elif form_data["start_time"] >= form_data["end_time"]:
+            self._errors["end_time"] = [
+                "End time of reservation must be after start time."
+            ]
+            del form_data["end_time"]
         return form_data

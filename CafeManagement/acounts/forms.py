@@ -16,5 +16,5 @@ class CustomUserChangeForm(UserChangeForm):
 
 
 class LoginForm(forms.Form):
-    phone_number = forms.CharField(label='Phone Number')
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    phone_number = forms.CharField(label="Phone Number")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)

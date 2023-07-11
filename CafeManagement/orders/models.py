@@ -32,11 +32,15 @@ class Reserve(ModelInfo):
     def clean(self):
         super().clean()
         if not (date.today() <= self.reserve_date):
-            raise ValidationError('Invalid reserve date')
-        if  (date.today() == self.reserve_date) and (self.start_reserve_time<datetime.now().time()):
-            raise ValidationError('Invalid start reserve time')
+            raise ValidationError("Invalid reserve date")
+        if (date.today() == self.reserve_date) and (
+            self.start_reserve_time < datetime.now().time()
+        ):
+            raise ValidationError("Invalid start reserve time")
         if not (self.start_reserve_time <= self.end_reserve_time):
-            raise ValidationError("End reserve time can't be before start reserve time.")
+            raise ValidationError(
+                "End reserve time can't be before start reserve time."
+            )
 
 
 class Order(ModelInfo):
