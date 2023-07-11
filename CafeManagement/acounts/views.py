@@ -9,7 +9,7 @@ from orders.models import Order, Receipt
 from menu_items.models import MenuItem
 from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm
+from .forms import LoginForm, ChangeOrderStatusForm
 
 
 class LoginView(View):
@@ -64,14 +64,21 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
         orders = Order.objects.all()
         menuItems = MenuItem.objects.all()
         reciepts = Receipt.objects.all()
+        order_status_form = ChangeOrderStatusForm()
         return render(
             request,
             "acounts/dashboard.html",
-            context={"orders": orders, "menuItems": menuItems, "reciepts": reciepts},
+            context={"orders": orders, "menuItems": menuItems, "reciepts": reciepts, "order_status_form": order_status_form},
         )
 
     def post(self, request):
-        ...
+        if request.POST.get("order_status"):
+            form = ChangeOrderStatusForm(request.POST)
+            if form.is_valid():
+                id=form.cleaned_data["id"]
+                new_status = form.cleaned_data["order_status"]
+                Order.objects.filter(id=id).update(serving_status=new_status)
+
 
 
 # class ManagerView(LoginRequiredMixin, PermissionRequiredMixin, View):
