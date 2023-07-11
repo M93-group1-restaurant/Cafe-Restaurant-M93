@@ -106,7 +106,7 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="">Recent Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">Pending Orders</a></li>
               <li class="nav-item"> <a class="nav-link" href="">Paid Orders</a></li>
               <li class="nav-item"> <a class="nav-link" href="">Cooking Orders</a></li>
               <li class="nav-item"> <a class="nav-link" href="">Served Orders</a></li>
@@ -698,6 +698,7 @@
                           <th> Table Number </th>
                           <th> Ordered at </th>
                           <th> Order Status </th>
+                          <th> </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -716,11 +717,51 @@
                           <td> {{order.id}} </td>
                           <td> {{order.table.number}} </td>
                           <td> {{order.created_at}} </td>
-                          <td>
-                            <div class="badge badge-outline-success">{{order.get_serving_status_display}}</div>
-                            {# <div class="badge badge-outline-warning">Pending</div> #}
-                            {# <div class="badge badge-outline-danger">Rejected</div> #}
                           </td>
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          
+                          <td class="pt-3">  
+                            <select name="serving_status" id="id_serving_status">
+                              {% if order.serving_status == 1 %}
+                                <option value="1" selected>Pending</option>
+                                <option value="2">Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 2 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" selected>Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 3 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3" selected>Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 4 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4" selected>Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 5 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5" selected>Cancel</option>
+
+                              {% endif %}
+                            </select>
+                              
+                          <td>
+                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
+                              <input type="submit" value="Change Status"/>
+                          </td>
+                        </form>
                         </tr>
                         {% endfor %}
                       </tbody>
