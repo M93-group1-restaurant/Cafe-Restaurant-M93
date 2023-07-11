@@ -6,3 +6,4 @@ class ChangeOrderStatusForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ("serving_status",)
+        labels= {"serving_status":""}

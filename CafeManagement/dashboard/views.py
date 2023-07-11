@@ -33,17 +33,16 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
         return render(
             request,
             "dashboard/index.html",
-            context={"orders": orders, "menuItems": menuItems, "reciepts": reciepts, "order_status_form": order_status_form},
+            context={"orders": orders, "menuItems": menuItems, "reciepts": reciepts},
         )
 
     def post(self, request):
-        if request.POST.get("order_status"):
-            form = ChangeOrderStatusForm(request.POST)
-            if form.is_valid():
-                id=form.cleaned_data["id"]
-                new_status = form.cleaned_data["order_status"]
-                Order.objects.filter(id=id).update(serving_status=new_status)
-
+        if request.POST.get("serving_status"):
+            print(request.POST)
+            id=request.POST.get("order_id")
+            new_status = request.POST.get("serving_status")
+            Order.objects.filter(id=id).update(serving_status=new_status)
+        return redirect('dashboard')
 
 # class ManagerView(LoginRequiredMixin, PermissionRequiredMixin, View):
 
