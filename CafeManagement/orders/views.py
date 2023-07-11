@@ -133,7 +133,7 @@ class BookView(View):
                     break
             else:
                 selected_table = None
-                
+
             if selected_table:
                 Reserve.objects.create(
                     phone_number=data["phone_number"],

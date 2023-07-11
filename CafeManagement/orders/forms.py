@@ -1,6 +1,7 @@
 from django import forms
 from core.utils import get_phonenumber_regex
 from .models import Order, Table
+from datetime import datetime, date
 
 
 class CartForm(forms.ModelForm):
@@ -32,26 +33,14 @@ class BookTableForm(forms.Form):
         ("5", "5"),
         ("6", "6"),
     ]
-    # name = forms.CharField(
-    #     widget=forms.TextInput(
-    #         attrs={"placeholder": "Your name (optional)", "class": "form-control"}
-    #     ),
-    #     label="",
-    #     required= False
-    # )
+
     phone_number = forms.CharField(
         widget=forms.TextInput(
             attrs={"placeholder": "Your phone number", "class": "form-control"}
         ),
         label="",
     )
-    # email = forms.EmailField(
-    #     widget=forms.EmailInput(
-    #         attrs={"placeholder": "Your email (optional)", "class": "form-control"}
-    #     ),
-    #     label="",
-    #     required= False
-    # )
+
     date = forms.DateField(
         widget=forms.DateInput(
             attrs={"placeholder": "YYYY-MM-DD", "type": "date", "class": "form-control"}
@@ -86,3 +75,21 @@ class BookTableForm(forms.Form):
         required=True,
         widget=forms.Select(attrs={"class": "form-control"}),
     )
+
+    def clean(self):
+        form_data = self.cleaned_data
+        if form_data["date"] < date.today():
+            self._errors["date"] = ["Reservation date can't be in the past."]
+            del form_data["date"]
+        elif (
+            form_data["date"] == date.today()
+            and form_data["start_time"] < datetime.now().time()
+        ):
+            self._errors["start_time"] = ["Start time can't be in the past."]
+            del form_data["start_time"]
+        elif form_data["start_time"] >= form_data["end_time"]:
+            self._errors["end_time"] = [
+                "End time of reservation must be after start time."
+            ]
+            del form_data["end_time"]
+        return form_data
