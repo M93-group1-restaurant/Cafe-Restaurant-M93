@@ -101,14 +101,17 @@
             <span class="menu-icon">
               <i class="mdi mdi-laptop"></i>
             </span>
-            <span class="menu-title">Basic UI Elements</span>
+            <span class="menu-title">Orders</span>
             <i class="menu-arrow"></i>
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">Pending Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">Paid Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">Cooking Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">Served Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">Canceled Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">All orders</a></li>
             </ul>
           </div>
         </li>
@@ -690,16 +693,16 @@
                               </label>
                             </div>
                           </th>
-                          <th> Client Name </th>
-                          <th> Order No </th>
-                          <th> Product Cost </th>
-                          <th> Project </th>
-                          <th> Payment Mode </th>
-                          <th> Start Date </th>
-                          <th> Payment Status </th>
+                          <th> Client Phone </th>
+                          <th> Order ID </th>
+                          <th> Table Number </th>
+                          <th> Ordered at </th>
+                          <th> Order Status </th>
+                          <th> </th>
                         </tr>
                       </thead>
                       <tbody>
+                        {% for order in orders %}
                         <tr>
                           <td>
                             <div class="form-check form-check-muted m-0">
@@ -709,102 +712,58 @@
                             </div>
                           </td>
                           <td>
-                            <img src="{% static 'assets/images/faces/face1.jpg'%}" alt="image" />
-                            <span class="pl-2">Henry Klein</span>
+                            <span>{{order.phone_number}}</span>
                           </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Dashboard </td>
-                          <td> Credit card </td>
-                          <td> 04 Dec 2019 </td>
+                          <td> {{order.id}} </td>
+                          <td> {{order.table.number}} </td>
+                          <td> {{order.created_at}} </td>
+                          </td>
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          
+                          <td class="pt-3">  
+                            <select name="serving_status" id="id_serving_status">
+                              {% if order.serving_status == 1 %}
+                                <option value="1" selected>Pending</option>
+                                <option value="2">Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 2 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" selected>Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 3 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3" selected>Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 4 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4" selected>Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 5 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5" selected>Cancel</option>
+
+                              {% endif %}
+                            </select>
+                              
                           <td>
-                            <div class="badge badge-outline-success">Approved</div>
+                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
+                              <input type="submit" value="Change Status"/>
                           </td>
+                        </form>
                         </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="{% static 'assets/images/faces/face2.jpg'%}" alt="image" />
-                            <span class="pl-2">Estella Bryan</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Website </td>
-                          <td> Cash on delivered </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-warning">Pending</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="assets/images/faces/face5.jpg" alt="image" />
-                            <span class="pl-2">Lucy Abbott</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> App design </td>
-                          <td> Credit card </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-danger">Rejected</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="{% static 'assets/images/faces/face3.jpg'%}" alt="image" />
-                            <span class="pl-2">Peter Gill</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Development </td>
-                          <td> Online Payment </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-success">Approved</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            <img src="{% static 'assets/images/faces/face4.jpg'%}" alt="image" />
-                            <span class="pl-2">Sallie Reyes</span>
-                          </td>
-                          <td> 02312 </td>
-                          <td> $14,500 </td>
-                          <td> Website </td>
-                          <td> Credit card </td>
-                          <td> 04 Dec 2019 </td>
-                          <td>
-                            <div class="badge badge-outline-success">Approved</div>
-                          </td>
-                        </tr>
+                        {% endfor %}
                       </tbody>
                     </table>
                   </div>
