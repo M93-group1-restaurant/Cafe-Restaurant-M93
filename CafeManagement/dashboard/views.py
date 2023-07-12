@@ -21,8 +21,6 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
             self.request.user.groups.filter(name="cashier").exists()
             or self.request.user.groups.filter(name="manager").exists()
         )
-        if not result:
-            raise Http404
         return result
 
     def get(self, request):
