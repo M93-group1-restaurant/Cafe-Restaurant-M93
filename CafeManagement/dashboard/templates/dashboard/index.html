@@ -161,7 +161,6 @@
               <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
               <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
             </ul>
           </div>
         </li>
@@ -681,7 +680,7 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Order Status</h4>
+                  <h4 class="card-title">Recent Orders</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -702,7 +701,477 @@
                         </tr>
                       </thead>
                       <tbody>
-                        {% for order in orders %}
+                        {% for order in orders.recent_orders %}
+                        <tr>
+                          <td>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <span>{{order.phone_number}}</span>
+                          </td>
+                          <td> {{order.id}} </td>
+                          <td> {{order.table.number}} </td>
+                          <td> {{order.created_at}} </td>
+                          </td>
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          
+                          <td class="pt-3">  
+                            <select name="serving_status" id="id_serving_status">
+                              {% if order.serving_status == 1 %}
+                                <option value="1" selected>Pending</option>
+                                <option value="2">Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 2 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" selected>Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 3 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3" selected>Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 4 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4" selected>Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 5 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5" selected>Cancel</option>
+
+                              {% endif %}
+                            </select>
+                              
+                          <td>
+                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
+                              <input type="submit" value="Change Status"/>
+                          </td>
+                        </form>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Pending Orders</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </th>
+                          <th> Client Phone </th>
+                          <th> Order ID </th>
+                          <th> Table Number </th>
+                          <th> Ordered at </th>
+                          <th> Order Status </th>
+                          <th> </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for order in orders.pending_orders %}
+                        <tr>
+                          <td>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <span>{{order.phone_number}}</span>
+                          </td>
+                          <td> {{order.id}} </td>
+                          <td> {{order.table.number}} </td>
+                          <td> {{order.created_at}} </td>
+                          </td>
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          
+                          <td class="pt-3">  
+                            <select name="serving_status" id="id_serving_status">
+                              {% if order.serving_status == 1 %}
+                                <option value="1" selected>Pending</option>
+                                <option value="2">Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 2 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" selected>Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 3 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3" selected>Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 4 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4" selected>Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 5 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5" selected>Cancel</option>
+
+                              {% endif %}
+                            </select>
+                              
+                          <td>
+                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
+                              <input type="submit" value="Change Status"/>
+                          </td>
+                        </form>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Confirmed Orders</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </th>
+                          <th> Client Phone </th>
+                          <th> Order ID </th>
+                          <th> Table Number </th>
+                          <th> Ordered at </th>
+                          <th> Order Status </th>
+                          <th> </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for order in orders.confirmed_orders %}
+                        <tr>
+                          <td>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <span>{{order.phone_number}}</span>
+                          </td>
+                          <td> {{order.id}} </td>
+                          <td> {{order.table.number}} </td>
+                          <td> {{order.created_at}} </td>
+                          </td>
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          
+                          <td class="pt-3">  
+                            <select name="serving_status" id="id_serving_status">
+                              {% if order.serving_status == 1 %}
+                                <option value="1" selected>Pending</option>
+                                <option value="2">Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 2 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" selected>Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 3 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3" selected>Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 4 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4" selected>Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 5 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5" selected>Cancel</option>
+
+                              {% endif %}
+                            </select>
+                              
+                          <td>
+                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
+                              <input type="submit" value="Change Status"/>
+                          </td>
+                        </form>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Cooking Orders</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </th>
+                          <th> Client Phone </th>
+                          <th> Order ID </th>
+                          <th> Table Number </th>
+                          <th> Ordered at </th>
+                          <th> Order Status </th>
+                          <th> </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for order in orders.cooking_orders %}
+                        <tr>
+                          <td>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <span>{{order.phone_number}}</span>
+                          </td>
+                          <td> {{order.id}} </td>
+                          <td> {{order.table.number}} </td>
+                          <td> {{order.created_at}} </td>
+                          </td>
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          
+                          <td class="pt-3">  
+                            <select name="serving_status" id="id_serving_status">
+                              {% if order.serving_status == 1 %}
+                                <option value="1" selected>Pending</option>
+                                <option value="2">Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 2 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" selected>Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 3 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3" selected>Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 4 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4" selected>Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 5 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5" selected>Cancel</option>
+
+                              {% endif %}
+                            </select>
+                              
+                          <td>
+                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
+                              <input type="submit" value="Change Status"/>
+                          </td>
+                        </form>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Canceled Orders</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </th>
+                          <th> Client Phone </th>
+                          <th> Order ID </th>
+                          <th> Table Number </th>
+                          <th> Ordered at </th>
+                          <th> Order Status </th>
+                          <th> </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for order in orders.canceled_orders %}
+                        <tr>
+                          <td>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <span>{{order.phone_number}}</span>
+                          </td>
+                          <td> {{order.id}} </td>
+                          <td> {{order.table.number}} </td>
+                          <td> {{order.created_at}} </td>
+                          </td>
+                          <form action="" method="post">
+                          {% csrf_token %}
+                          
+                          <td class="pt-3">  
+                            <select name="serving_status" id="id_serving_status">
+                              {% if order.serving_status == 1 %}
+                                <option value="1" selected>Pending</option>
+                                <option value="2">Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 2 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" selected>Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 3 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3" selected>Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 4 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4" selected>Served</option>
+                                <option value="5">Cancel</option>
+                              {% elif  order.serving_status == 5 %}
+                              <option value="1" >Pending</option>
+                                <option value="2" >Confirm</option>
+                                <option value="3">Cooking</option>
+                                <option value="4">Served</option>
+                                <option value="5" selected>Cancel</option>
+
+                              {% endif %}
+                            </select>
+                              
+                          <td>
+                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
+                              <input type="submit" value="Change Status"/>
+                          </td>
+                        </form>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">All Orders</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>
+                            <div class="form-check form-check-muted m-0">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                              </label>
+                            </div>
+                          </th>
+                          <th> Client Phone </th>
+                          <th> Order ID </th>
+                          <th> Table Number </th>
+                          <th> Ordered at </th>
+                          <th> Order Status </th>
+                          <th> </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for order in orders.all_orders %}
                         <tr>
                           <td>
                             <div class="form-check form-check-muted m-0">
