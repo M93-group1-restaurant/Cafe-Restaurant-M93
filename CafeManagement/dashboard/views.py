@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import (
     PermissionRequiredMixin,
 )
 from django.views import View
-from orders.models import Order, Receipt
+from orders.models import Order, Receipt, Order_menuItem
 from menu_items.models import MenuItem
 from django.http import Http404
 from .forms import ChangeOrderStatusForm
@@ -15,6 +15,7 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     login_url = "/login/"
     order_instance = Order()
+    order_menuItem_instance = Order_menuItem()
 
     def test_func(self):
         result = (
@@ -36,11 +37,16 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
         menuItems = MenuItem.objects.all()
         reciepts = Receipt.objects.all()
         order_status_form = ChangeOrderStatusForm()
+        circular_chart_dict = self.Order_menuItem.get_list_of_menu_item_name_with_quantity()
+        circular_chart_x = list(circular_chart_dict.keys())
+        circular_chart_y = list(circular_chart_dict.values())
         return render(
             request,
             "dashboard/index.html",
             context={"orders": orders, "menuItems": menuItems, "reciepts": reciepts,
-                     "bar_chart_data": self.order_instance.get_list_of_order_count_in_month},
+                     "bar_chart_data": self.order_instance.get_list_of_order_count_in_month(),
+                     "circular_chart_x": circular_chart_x, "circular_chart_y": circular_chart_y
+                     },
         )
 
     def post(self, request):
