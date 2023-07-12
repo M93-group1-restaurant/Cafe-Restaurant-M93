@@ -37,21 +37,22 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
         menuItems = MenuItem.objects.all()
         reciepts = Receipt.objects.all()
         order_status_form = ChangeOrderStatusForm()
-        circular_chart_dict = self.Order_menuItem.get_list_of_menu_item_name_with_quantity()
-        circular_chart_x = list(circular_chart_dict.keys())
-        circular_chart_y = list(circular_chart_dict.values())
+        circular_chart_dict = list(
+            self.order_menuItem_instance.get_list_of_menu_item_name_with_quantity())
+        circularchart_data = self.order_menuItem_instance.get_list_of_menu_item_name_with_quantity()
+
         return render(
             request,
             "dashboard/index.html",
             context={"orders": orders, "menuItems": menuItems, "reciepts": reciepts,
                      "bar_chart_data": self.order_instance.get_list_of_order_count_in_month(),
-                     "circular_chart_x": circular_chart_x, "circular_chart_y": circular_chart_y
+                     "circular_chart_x": circularchart_data.get("menuItem_titles"),
+                     "circular_chart_y": circularchart_data.get("quantities"),
                      },
         )
 
     def post(self, request):
         if request.POST.get("serving_status"):
-            print(request.POST)
             id = request.POST.get("order_id")
             new_status = request.POST.get("serving_status")
             Order.objects.filter(id=id).update(serving_status=new_status)

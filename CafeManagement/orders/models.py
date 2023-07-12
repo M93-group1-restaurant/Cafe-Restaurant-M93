@@ -135,5 +135,11 @@ class Order_menuItem(ModelInfo):
         from django.db.models import Sum
 
         menu_items = Order_menuItem.objects.values(
-            'menuItem__title').annotate(total_quantity=Sum('quantity'))
-        return menu_items
+            'menuItem__title').annotate(quantity=Sum('quantity'))
+        k = []
+        v = []
+        for item in list(menu_items):
+            k.append(item['menuItem__title'])
+            v.append(item['quantity'])
+
+        return {"menuItem_titles": k, "quantities": v}
