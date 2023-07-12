@@ -26,7 +26,14 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
         return result
 
     def get(self, request):
-        orders = Order.objects.all()
+        all_orders = Order.objects.all()
+        recent_orders=all_orders[:10]
+        pending_orders=all_orders.filter(serving_status=1)
+        confirmed_orders=all_orders.filter(serving_status=2)
+        cooking_orders=all_orders.filter(serving_status=3)
+        served_orders=all_orders.filter(serving_status=4)
+        canceled_orders=all_orders.filter(serving_status=5)
+        orders= {"all_orders": all_orders,"recent_orders":recent_orders,"pending_orders":pending_orders,"confirmed_orders":confirmed_orders,"cooking_orders":cooking_orders,"served_orders":served_orders, "canceled_orders":canceled_orders}
         menuItems = MenuItem.objects.all()
         reciepts = Receipt.objects.all()
         order_status_form = ChangeOrderStatusForm()
