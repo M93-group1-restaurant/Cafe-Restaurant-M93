@@ -60,8 +60,10 @@ class Order(ModelInfo):
         "Table", on_delete=models.SET_NULL, related_name="orders", null=True
     )
 
-    delivery_status = models.IntegerField(choices=DeliveryChoice.choices, default=3)
-    serving_status = models.IntegerField(choices=ServeStatusChoice.choices, default=1)
+    delivery_status = models.IntegerField(
+        choices=DeliveryChoice.choices, default=3)
+    serving_status = models.IntegerField(
+        choices=ServeStatusChoice.choices, default=1)
     phone_regex = get_phonenumber_regex()
     phone_number = models.CharField(
         max_length=14, null=True, blank=True, validators=[phone_regex]
@@ -79,6 +81,15 @@ class Order(ModelInfo):
 
     def __str__(self):
         return f"order id:{self.id} status:{self.serving_status}"
+
+    def get_list_of_order_count_in_month(self):
+        list_of_order_count_in_month = []
+        all_orders_in_this_year = Order.objects.filter(
+            created_at__year=date.today().year)
+        for order_item in all_orders_in_this_year:
+            order_created_month = order_item.created_at.month
+            list_of_order_count_in_month[order_created_month] = +1
+        return list_of_order_count_in_month
 
 
 class Receipt(ModelInfo):
