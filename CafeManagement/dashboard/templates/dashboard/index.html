@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{% static 'assets/images/favicon.png'%}" />
+  
 </head>
 
 <body>
@@ -106,12 +107,13 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="">Pending Orders</a></li>
-              <li class="nav-item"> <a class="nav-link" href="">Paid Orders</a></li>
-              <li class="nav-item"> <a class="nav-link" href="">Cooking Orders</a></li>
-              <li class="nav-item"> <a class="nav-link" href="">Served Orders</a></li>
-              <li class="nav-item"> <a class="nav-link" href="">Canceled Orders</a></li>
-              <li class="nav-item"> <a class="nav-link" href="">All orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="javascript:null" id="orders1" onclick="show_recent()">Recent Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="javascript:null" id="orders1" onclick="show_pending()">Pending Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="javascript:null" id="orders2" onclick="show_paid()">Paid Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="javascript:null" id="orders3" onclick="show_cooking()">Cooking Orders</a></li>
+              {# <li class="nav-item"> <a class="nav-link" href="javascript:null" id="orders4" onclick="show_served()">Served Orders</a></li> #}
+              <li class="nav-item"> <a class="nav-link" href="javascript:null" id="orders5" onclick="show_canceled()">Canceled Orders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="javascript:null" id="orders6" onclick="show_allorders()">All orders</a></li>
             </ul>
           </div>
         </li>
@@ -617,7 +619,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" >
             <div class="col-sm-4 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -676,7 +678,7 @@
               </div>
             </div>
           </div>
-          <div class="row ">
+          <div class="row " id="recent">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -685,13 +687,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -704,13 +700,6 @@
                         {% for order in orders.recent_orders %}
                         <tr>
                           <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
-                          <td>
                             <span>{{order.phone_number}}</span>
                           </td>
                           <td> {{order.id}} </td>
@@ -770,7 +759,7 @@
               </div>
             </div>
           </div>
-          <div class="row ">
+          <div class="row " hidden="true" id="pending">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -779,13 +768,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                        
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -797,13 +780,7 @@
                       <tbody>
                         {% for order in orders.pending_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -864,7 +841,7 @@
               </div>
             </div>
           </div>
-          <div class="row ">
+          <div class="row " hidden="true" id="confirmed">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -873,13 +850,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -891,13 +862,7 @@
                       <tbody>
                         {% for order in orders.confirmed_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -958,7 +923,7 @@
               </div>
             </div>
           </div>
-          <div class="row ">
+          <div class="row " hidden="true" id="cooking">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -967,13 +932,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -985,13 +944,7 @@
                       <tbody>
                         {% for order in orders.cooking_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -1052,7 +1005,7 @@
               </div>
             </div>
           </div>
-          <div class="row ">
+          <div class="row" hidden="true" id="canceled">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -1061,13 +1014,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -1079,13 +1026,7 @@
                       <tbody>
                         {% for order in orders.canceled_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -1146,22 +1087,16 @@
               </div>
             </div>
           </div>
-          <div class="row ">
+          <div class="row" hidden="true" id="all_orders">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">All Orders</h4>
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table"  >
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -1173,13 +1108,7 @@
                       <tbody>
                         {% for order in orders.all_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -1510,6 +1439,8 @@
   <!-- endinject -->
   <!-- Custom js for this page -->
   <script src="{% static 'assets/js/dashboard.js'%}"></script>
+  <!-- Paginate table -->
+  <script src="{% static 'assets/js/orders.js' %}"></script>
   <!-- End custom js for this page -->
 </body>
 
