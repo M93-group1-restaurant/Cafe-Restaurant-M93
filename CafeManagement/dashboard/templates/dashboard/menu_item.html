@@ -1,8 +1,36 @@
-<li class="nav-item menu-items">
-    <a class="nav-link" href="chart.html">
-      <span class="menu-icon">
-        <i class="mdi mdi-chart-bar"></i>
-      </span>
-      <span class="menu-title">Menu Item</span>
-    </a>
-  </li>
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Menu Items</h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                
+                <th> Id </th>
+                <th> Title </th>
+                <th> Category </th>
+                <th> Price </th>
+                <th> Image </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in menuItems %}
+              <tr>
+                <td>
+                  <span>{{item.id}}</span>
+                </td>
+                <td> {{item.title}} </td>
+                <td> {{item.category}} </td>
+                <td> {{item.price}} </td>
+                <td display: table-cell> <img src="{{item.image.url}}"> </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+          </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
