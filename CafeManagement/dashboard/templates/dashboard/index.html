@@ -1033,6 +1033,59 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Menu Items</h4>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          
+                          <th> Id </th>
+                          <th> Title </th>
+                          <th> Category </th>
+                          <th> Price </th>
+                          <th> Is Active </th>
+                          <th> Description </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for item in menuItems %}
+                        <tr>
+                          <td>
+                            <span>{{item.id}}</span>
+                          </td>
+                          <td> {{item.title}} </td>
+                          <td> {{item.category}} </td>
+                          <td> {{item.price}} </td>
+                          <td> {{item.is_active}} </td>
+                          <td> {{item.description|safe}} </td>
+                          </tr>
+                        {% endfor %}
+                        <tr>
+                          <td>
+                            <span></span>
+                          </td>
+                          <td> <input type="text"> </td>
+                          <td> {{item.category}} </td>
+                          <td> {{item.price}} </td>
+                          <td> {{item.is_active}} </td>
+                          <td> {{item.description|safe}} </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <form action="" method="post">
+                      {% csrf_token %}                  
+                        <input type="submit" value="New Menu Item"/>
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
