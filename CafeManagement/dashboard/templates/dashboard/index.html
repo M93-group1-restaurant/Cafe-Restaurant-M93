@@ -1048,7 +1048,7 @@
                           <th> Category </th>
                           <th> Price </th>
                           <th> Is Active </th>
-                          <th> Description </th>
+                          <th> Image </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -1061,26 +1061,12 @@
                           <td> {{item.category}} </td>
                           <td> {{item.price}} </td>
                           <td> {{item.is_active}} </td>
-                          <td> {{item.description|safe}} </td>
+                          <td display: table-cell> <img src="{{item.image.url}}"> </td>
                           </tr>
                         {% endfor %}
-                        <tr>
-                          <td>
-                            <span></span>
-                          </td>
-                          <td> <input type="text"> </td>
-                          <td> {{item.category}} </td>
-                          <td> {{item.price}} </td>
-                          <td> {{item.is_active}} </td>
-                          <td> {{item.description|safe}} </td>
-                        </tr>
-                      </tbody>
+                        </tbody>
                     </table>
-                    <form action="" method="post">
-                      {% csrf_token %}                  
-                        <input type="submit" value="New Menu Item"/>
-                      </form>
-                  </div>
+                    </div>
                 </div>
               </div>
             </div>
