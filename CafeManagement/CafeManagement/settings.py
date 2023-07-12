@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "orders",
     "ckeditor",
     "acounts",
+    "dashboard",
 ]
 
 MIDDLEWARE = [
