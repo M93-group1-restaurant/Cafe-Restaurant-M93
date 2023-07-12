@@ -4,10 +4,10 @@
     var myChart1 = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: [{% for item in menu_list %} '{{item.name}}', {% endfor %}],
+            labels: {{circular_chart_x}},
     datasets: [{
         label: 'Number of Menu item',
-        data: [{% for item in menu_list %} {{ item.quantity }}, {% endfor %}],
+        data: {{circular_chart_y}},
         backgroundColor: [
             'rgba(255, 99, 132, 1)',
             'rgba(54, 162, 235, 1)',
