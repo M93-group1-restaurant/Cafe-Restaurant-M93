@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
   <!-- End layout styles -->
   <link rel="shortcut icon" href="{% static 'assets/images/favicon.png'%}" />
+  
 </head>
 
 <body>
@@ -685,13 +686,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -703,13 +698,6 @@
                       <tbody>
                         {% for order in orders.recent_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -779,13 +767,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                        
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -797,13 +779,7 @@
                       <tbody>
                         {% for order in orders.pending_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -873,13 +849,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -891,13 +861,7 @@
                       <tbody>
                         {% for order in orders.confirmed_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -967,13 +931,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -985,13 +943,7 @@
                       <tbody>
                         {% for order in orders.cooking_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -1061,13 +1013,7 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -1079,13 +1025,7 @@
                       <tbody>
                         {% for order in orders.canceled_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -1152,16 +1092,10 @@
                 <div class="card-body">
                   <h4 class="card-title">All Orders</h4>
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="all_orders">
                       <thead>
                         <tr>
-                          <th>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </th>
+                          
                           <th> Client Phone </th>
                           <th> Order ID </th>
                           <th> Table Number </th>
@@ -1173,13 +1107,7 @@
                       <tbody>
                         {% for order in orders.all_orders %}
                         <tr>
-                          <td>
-                            <div class="form-check form-check-muted m-0">
-                              <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input">
-                              </label>
-                            </div>
-                          </td>
+                          
                           <td>
                             <span>{{order.phone_number}}</span>
                           </td>
@@ -1510,6 +1438,8 @@
   <!-- endinject -->
   <!-- Custom js for this page -->
   <script src="{% static 'assets/js/dashboard.js'%}"></script>
+  <!-- Paginate table -->
+  {#<script src="{% static 'assets/js/paginate_orders.js'%}"></script>#}
   <!-- End custom js for this page -->
 </body>
 
