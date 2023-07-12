@@ -132,7 +132,6 @@ class Order_menuItem(ModelInfo):
         return f"{self.order}, {self.menuItem}"
 
     def get_list_of_menu_item_name_with_quantity(self):
-        # list_of_menu_item_name_with_quantity = MenuItem.objects.order_by().values('name').distinct()
         from django.db.models import Sum
 
         menu_items = Order_menuItem.objects.values(

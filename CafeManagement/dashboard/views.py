@@ -40,7 +40,7 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
             request,
             "dashboard/index.html",
             context={"orders": orders, "menuItems": menuItems, "reciepts": reciepts,
-                     "chart_data": self.order_instance.get_list_of_order_count_in_month},
+                     "bar_chart_data": self.order_instance.get_list_of_order_count_in_month},
         )
 
     def post(self, request):
