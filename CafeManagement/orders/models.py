@@ -89,7 +89,7 @@ class Order(ModelInfo):
         for order_item in all_orders_in_this_year:
             order_created_month = order_item.created_at.month
             list_of_order_count_in_month[order_created_month -
-                                         1] = list_of_order_count_in_month[order_created_month]+1
+                                         1] = list_of_order_count_in_month[order_created_month-1]+1
         return list_of_order_count_in_month
 
 
@@ -130,3 +130,11 @@ class Order_menuItem(ModelInfo):
 
     def __str__(self):
         return f"{self.order}, {self.menuItem}"
+
+    def get_list_of_menu_item_name_with_quantity(self):
+        # list_of_menu_item_name_with_quantity = MenuItem.objects.order_by().values('name').distinct()
+        from django.db.models import Sum
+
+        menu_items = Order_menuItem.objects.values(
+            'menuItem__title').annotate(total_quantity=Sum('quantity'))
+        return menu_items
