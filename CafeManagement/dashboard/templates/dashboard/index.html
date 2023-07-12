@@ -31,21 +31,17 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="index.html"><img src="{% static 'assets/images/logo.svg'%}" alt="logo" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{% static 'assets/images/logo-mini.svg' %}"
-            alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="index.html"><img src="{% static 'admin/images/o1.png'%}" alt="logo" style="width: 70px; height: 70px;" /></a>
+        
       </div>
       <ul class="nav">
         <li class="nav-item profile">
           <div class="profile-desc">
             <div class="profile-pic">
               <div class="count-indicator">
-                <img class="img-xs rounded-circle " src="{% static 'assets/images/faces/face15.jpg'%}" alt="">
-                <span class="count bg-success"></span>
               </div>
               <div class="profile-name">
-                <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                <span>Gold Member</span>
+                <h5 class="mb-0 font-weight-normal">Group "One"</h5>
               </div>
             </div>
             <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -298,8 +294,8 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                 <div class="navbar-profile">
-                  <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face15.jpg'%}" alt="">
-                  <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                  <img class="img-xs rounded-circle" src="{% static 'assets/images/profile.png'%}" alt="">
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name">Admin</p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
@@ -318,7 +314,7 @@
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
+                <a class="dropdown-item preview-item" href="{% url 'logout' %}">
                   <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
                       <i class="mdi mdi-logout text-danger"></i>
@@ -343,28 +339,7 @@
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card ">
-                <div class="card-body py-0 px-0 px-sm-3">
-                  <div class="row align-items-center">
-                    <div class="col-4 col-sm-3 col-xl-2">
-                      <img src="{% static 'assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid'%}" alt="">
-                    </div>
-                    <div class="col-5 col-sm-7 col-xl-8 p-0">
-                      <h4 class="mb-1 mb-sm-0">Want even more features?</h4>
-                      <p class="mb-0 font-weight-normal d-none d-sm-block">Check out our Pro version with 5 unique
-                        layouts!</p>
-                    </div>
-                    <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
-                      <span>
-                        <a href="https://www.bootstrapdash.com/product/corona-admin-template/" target="_blank"
-                          class="btn btn-outline-light btn-rounded get-started-btn">Upgrade to PRO</a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
           <div class="row">
             <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
@@ -552,488 +527,7 @@
               </div>
             </div>
           </div>
-          <div class="row " id="recent">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Recent Orders</h4>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          
-                          <th> Client Phone </th>
-                          <th> Order ID </th>
-                          <th> Table Number </th>
-                          <th> Ordered at </th>
-                          <th> Order Status </th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for order in orders.recent_orders %}
-                        <tr>
-                          <td>
-                            <span>{{order.phone_number}}</span>
-                          </td>
-                          <td> {{order.id}} </td>
-                          <td> {{order.table.number}} </td>
-                          <td> {{order.created_at}} </td>
-                          </td>
-                          <form action="" method="post">
-                          {% csrf_token %}
-                          
-                          <td class="pt-3">  
-                            <select name="serving_status" id="id_serving_status">
-                              {% if order.serving_status == 1 %}
-                                <option value="1" selected>Pending</option>
-                                <option value="2">Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 2 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" selected>Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 3 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3" selected>Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 4 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4" selected>Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 5 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5" selected>Cancel</option>
-
-                              {% endif %}
-                            </select>
-                              
-                          <td>
-                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
-                              <input type="submit" value="Change Status"/>
-                          </td>
-                        </form>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row " hidden="true" id="pending">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Pending Orders</h4>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                        
-                          <th> Client Phone </th>
-                          <th> Order ID </th>
-                          <th> Table Number </th>
-                          <th> Ordered at </th>
-                          <th> Order Status </th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for order in orders.pending_orders %}
-                        <tr>
-                          
-                          <td>
-                            <span>{{order.phone_number}}</span>
-                          </td>
-                          <td> {{order.id}} </td>
-                          <td> {{order.table.number}} </td>
-                          <td> {{order.created_at}} </td>
-                          </td>
-                          <form action="" method="post">
-                          {% csrf_token %}
-                          
-                          <td class="pt-3">  
-                            <select name="serving_status" id="id_serving_status">
-                              {% if order.serving_status == 1 %}
-                                <option value="1" selected>Pending</option>
-                                <option value="2">Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 2 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" selected>Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 3 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3" selected>Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 4 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4" selected>Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 5 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5" selected>Cancel</option>
-
-                              {% endif %}
-                            </select>
-                              
-                          <td>
-                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
-                              <input type="submit" value="Change Status"/>
-                          </td>
-                        </form>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row " hidden="true" id="confirmed">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Confirmed Orders</h4>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          
-                          <th> Client Phone </th>
-                          <th> Order ID </th>
-                          <th> Table Number </th>
-                          <th> Ordered at </th>
-                          <th> Order Status </th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for order in orders.confirmed_orders %}
-                        <tr>
-                          
-                          <td>
-                            <span>{{order.phone_number}}</span>
-                          </td>
-                          <td> {{order.id}} </td>
-                          <td> {{order.table.number}} </td>
-                          <td> {{order.created_at}} </td>
-                          </td>
-                          <form action="" method="post">
-                          {% csrf_token %}
-                          
-                          <td class="pt-3">  
-                            <select name="serving_status" id="id_serving_status">
-                              {% if order.serving_status == 1 %}
-                                <option value="1" selected>Pending</option>
-                                <option value="2">Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 2 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" selected>Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 3 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3" selected>Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 4 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4" selected>Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 5 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5" selected>Cancel</option>
-
-                              {% endif %}
-                            </select>
-                              
-                          <td>
-                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
-                              <input type="submit" value="Change Status"/>
-                          </td>
-                        </form>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row " hidden="true" id="cooking">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Cooking Orders</h4>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          
-                          <th> Client Phone </th>
-                          <th> Order ID </th>
-                          <th> Table Number </th>
-                          <th> Ordered at </th>
-                          <th> Order Status </th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for order in orders.cooking_orders %}
-                        <tr>
-                          
-                          <td>
-                            <span>{{order.phone_number}}</span>
-                          </td>
-                          <td> {{order.id}} </td>
-                          <td> {{order.table.number}} </td>
-                          <td> {{order.created_at}} </td>
-                          </td>
-                          <form action="" method="post">
-                          {% csrf_token %}
-                          
-                          <td class="pt-3">  
-                            <select name="serving_status" id="id_serving_status">
-                              {% if order.serving_status == 1 %}
-                                <option value="1" selected>Pending</option>
-                                <option value="2">Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 2 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" selected>Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 3 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3" selected>Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 4 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4" selected>Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 5 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5" selected>Cancel</option>
-                              {% endif %}
-                            </select>
-                          <td>
-                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
-                              <input type="submit" value="Change Status"/>
-                          </td>
-                        </form>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row" hidden="true" id="canceled">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Canceled Orders</h4>
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th> Client Phone </th>
-                          <th> Order ID </th>
-                          <th> Table Number </th>
-                          <th> Ordered at </th>
-                          <th> Order Status </th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for order in orders.canceled_orders %}
-                        <tr>
-                          
-                          <td>
-                            <span>{{order.phone_number}}</span>
-                          </td>
-                          <td> {{order.id}} </td>
-                          <td> {{order.table.number}} </td>
-                          <td> {{order.created_at}} </td>
-                          </td>
-                          <form action="" method="post">
-                          {% csrf_token %}
-                          
-                          <td class="pt-3">  
-                            <select name="serving_status" id="id_serving_status">
-                              {% if order.serving_status == 1 %}
-                                <option value="1" selected>Pending</option>
-                                <option value="2">Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 2 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" selected>Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 3 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3" selected>Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 4 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4" selected>Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 5 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5" selected>Cancel</option>
-                              {% endif %}
-                            </select>
-                          <td>
-                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
-                              <input type="submit" value="Change Status"/>
-                          </td>
-                        </form>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row" hidden="true" id="all_orders">
-            <div class="col-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">All Orders</h4>
-                  <div class="table-responsive">
-                    <table class="table"  >
-                      <thead>
-                        <tr>
-                          <th> Client Phone </th>
-                          <th> Order ID </th>
-                          <th> Table Number </th>
-                          <th> Ordered at </th>
-                          <th> Order Status </th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for order in orders.all_orders %}
-                        <tr>
-                          <td>
-                            <span>{{order.phone_number}}</span>
-                          </td>
-                          <td> {{order.id}} </td>
-                          <td> {{order.table.number}} </td>
-                          <td> {{order.created_at}} </td>
-                          </td>
-                          <form action="" method="post">
-                          {% csrf_token %}
-                          
-                          <td class="pt-3">  
-                            <select name="serving_status" id="id_serving_status">
-                              {% if order.serving_status == 1 %}
-                                <option value="1" selected>Pending</option>
-                                <option value="2">Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 2 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" selected>Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 3 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3" selected>Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 4 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4" selected>Served</option>
-                                <option value="5">Cancel</option>
-                              {% elif  order.serving_status == 5 %}
-                              <option value="1" >Pending</option>
-                                <option value="2" >Confirm</option>
-                                <option value="3">Cooking</option>
-                                <option value="4">Served</option>
-                                <option value="5" selected>Cancel</option>
-                              {% endif %}
-                            </select>
-                          <td>
-                            <input type="text" value="{{order.id}}" name="order_id" hidden/>
-                              <input type="submit" value="Change Status"/>
-                          </td>
-                        </form>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
           <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
@@ -1071,6 +565,7 @@
             </div>
           </div>
           </div>
+          {% include 'dashboard/orders.html' %}
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

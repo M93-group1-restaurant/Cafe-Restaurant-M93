@@ -26,7 +26,7 @@ class LoginView(View):
                 login(request, user)
                 if redirect_to:
                     return HttpResponseRedirect(redirect_to)
-                return HttpResponseRedirect(reverse("home"))
+                return HttpResponseRedirect(reverse("dashboard"))
 
         error_message = "Invalid phone number or password. Please try again."
         return render(
