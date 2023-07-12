@@ -83,12 +83,12 @@ class Order(ModelInfo):
         return f"order id:{self.id} status:{self.serving_status}"
 
     def get_list_of_order_count_in_month(self):
-        list_of_order_count_in_month = []
+        list_of_order_count_in_month = [0]*12
         all_orders_in_this_year = Order.objects.filter(
             created_at__year=date.today().year)
         for order_item in all_orders_in_this_year:
             order_created_month = order_item.created_at.month
-            list_of_order_count_in_month[order_created_month] = +1
+            list_of_order_count_in_month[order_created_month] = list_of_order_count_in_month[order_created_month]+1
         return list_of_order_count_in_month
 
 
