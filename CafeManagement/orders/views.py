@@ -9,6 +9,9 @@ from django.views import View
 from django.db.models import Q
 from django.contrib import messages
 import json
+import logging
+
+logger=logging.getLogger('CafeManagement.orders')
 
 
 class CartView(View):
@@ -43,7 +46,8 @@ class CartView(View):
                 Order_menuItem.objects.create(
                     menuItem=menuItem[0], order=order, quantity=menuItem[1]
                 )
-
+                
+            logger.info(f"order_id:{order.id} phone_number:{order.phone_number}  table_number{order.table.number}")
             request.session["last_order"] = order.id
             if not request.session.get("orders_history"):
                 request.session["orders_history"] = [order.id]
@@ -154,3 +158,4 @@ class BookView(View):
         return render(
             request, "book.html", context={"form": form, "info": CartView.info}
         )
+

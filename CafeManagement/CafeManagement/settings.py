@@ -149,3 +149,33 @@ MESSAGE_TAGS = {
     messages.WARNING: "alert-warning",
     messages.ERROR: "alert-warning",
 }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR/ 'log/file.log',
+        },
+        "report":{
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR/ 'log/report.log',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        
+        'CafeManagement.orders': {
+            'handlers': ['report'],
+            'level': 'INFO',
+            },
+    },
+    
+}
