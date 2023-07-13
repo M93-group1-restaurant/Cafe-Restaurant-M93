@@ -9,7 +9,7 @@ from orders.models import Order, Receipt, Order_menuItem
 from menu_items.models import MenuItem
 from django.http import Http404
 from .forms import ChangeOrderStatusForm
-
+import logging
 
 class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
 

@@ -163,8 +163,15 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': BASE_DIR/ 'log/report.log',
+            "formatter": "verbose",
+
         }
     },
+    'formatters': {
+                'verbose': {
+                'format': '{ "time": "%(asctime)s", "level": "%(levelname)s", "logger": "%(name)s", "message": "%(message)s" }'
+                },
+                },
     'loggers': {
         'django': {
             'handlers': ['file'],

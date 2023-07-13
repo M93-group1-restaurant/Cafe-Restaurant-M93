@@ -47,7 +47,7 @@ class CartView(View):
                     menuItem=menuItem[0], order=order, quantity=menuItem[1]
                 )
                 
-            logger.info(f"order_id:{order.id} phone_number:{order.phone_number}  table_number{order.table.number}")
+            logger.info(f"order_id:{order.id} phone_number:{order.phone_number}  table_number{order.table.number} service_status:{order.serving_status} created_at:{order.created_at} ")
             request.session["last_order"] = order.id
             if not request.session.get("orders_history"):
                 request.session["orders_history"] = [order.id]
