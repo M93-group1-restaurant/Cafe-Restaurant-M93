@@ -15,7 +15,7 @@ class CartView(View):
     info = RestaurantInfo.objects.first()
 
     def get(self, request):
-        (menuItems, total_price) = CartView.load_cookie(request)
+        (menuItems, total_price) = self.load_cookie(request)
         form = CartForm()
         return render(
             request,
