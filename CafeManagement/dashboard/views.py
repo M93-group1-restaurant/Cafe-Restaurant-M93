@@ -36,7 +36,6 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
                   "cooking_orders": cooking_orders, "served_orders": served_orders, "canceled_orders": canceled_orders}
         menuItems = MenuItem.objects.all()
         reciepts = Receipt.objects.all()
-        order_status_form = ChangeOrderStatusForm()
         circular_chart_dict = list(
             self.order_menuItem_instance.get_list_of_menu_item_name_with_quantity())
         circularchart_data = self.order_menuItem_instance.get_list_of_menu_item_name_with_quantity()
@@ -54,6 +53,7 @@ class DashboardView(LoginRequiredMixin, UserPassesTestMixin, View):
     def post(self, request):
         if request.POST.get("serving_status"):
             id = request.POST.get("order_id")
+
             new_status = request.POST.get("serving_status")
             Order.objects.filter(id=id).update(serving_status=new_status)
         return redirect('dashboard')
