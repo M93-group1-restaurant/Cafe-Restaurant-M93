@@ -33,8 +33,10 @@ class CartView(View):
 
     def post(self, request):
         menuItems, total_price = CartView.load_cookie(request)
+        print(menuItems, total_price)
         form = CartForm(request.POST)
         if form.is_valid():
+            print('********************************')
             data = form.cleaned_data
             order = Order.objects.create(
                 table=data["table"], phone_number=data["phone_number"]
