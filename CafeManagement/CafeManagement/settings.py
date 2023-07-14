@@ -173,11 +173,11 @@ LOGGING = {
                 },
                 },
     'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': False,
-        },
+        # 'django': {
+        #     'handlers': ['file'],
+        #     'level': 'INFO',
+        #     'propagate': False,
+        # },
         
         'CafeManagement.orders': {
             'handlers': ['report'],
